@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<h3> Nuevo producto : </h3>
+<%= form_for :product, url: products_path do |f| %>
+  <p>
+    <%= f.label :id_producto %><br>
+    <%= f.text_field :id_producto %>
+  </p>
+   <p>
+    <%= f.label :nombre_producto %><br>
+    <%= f.text_field :nombre_producto %>
+  </p>
+   <p>
+    <%= f.label :tipo_producto %><br>
+    <%= f.text_field :tipo_producto %>
+  </p>
+ 
+  <p>
+    <%= f.label :descripcion %><br>
+    <%= f.text_area :descripcion %>
+  </p>
+   <p>
+    <%= f.label :cantidad %><br>
+    <%= f.number_field :cantidad %>
+  </p>
+   <p>
+    <%= f.label :caducidad %><br>
+    <%= f.date_field :caducidad %>
+  </p>  
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+
+
+</body>
+</html>
+

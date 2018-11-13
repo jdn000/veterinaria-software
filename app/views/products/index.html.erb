@@ -1,0 +1,23 @@
+<h1>Lista de productos.</h1>
+ 
+<table>
+  <tr>
+    <th>ID </th>
+    <th>Nombre </th>
+    <th>Tipo </th>
+    <th>Descripcion </th>
+    <th>Cantidad </th>
+    <th>Caducidad </th>
+  </tr>
+ 
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.id_producto %></td>
+      <td><%= product.nombre_producto %></td>
+      <td><%= product.tipo_producto %></td>
+      <td><%= product.descripcion %></td>
+      <td><%= product.cantidad %></td>
+      <td><%= product.caducidad %></td>
+    </tr>
+  <% end %>
+</table>
