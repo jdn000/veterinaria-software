@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :usuarios
+  devise_for :users
   root 'pagina_inicio#inicio'
   resources :products
   get 'products', to: 'products#index'
