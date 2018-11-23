@@ -38,17 +38,12 @@
           <!-- Sidebar  -->
           <nav id="sidebar">
               <div class="sidebar-header">
-                  <h3>Veterinaria</h3>
+                  <h3>Veterinaria Doolittle</h3>
               </div>
 
               <ul class="list-unstyled components">
-                  <p>                    
-                       <% if current_user %>
-                       <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-                       <% else %>
-                       <%= link_to 'Login', new_user_session_path %>
-                       <% end %>
-                 </p>
+
+
                   <li class="active">
                       <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
                       <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -83,11 +78,14 @@
 
               <ul class="list-unstyled CTAs">
                   <li>
-                      <a href="3" class="download">Download source</a>
-                  </li>
-                  <li>
-                      <a href="3" class="article">Back to article</a>
-                  </li>
+
+                        <% if current_user %>
+                       <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+                       <% else %>
+                       <%= link_to 'Login', new_user_session_path %>
+                         <% end %>
+
+                    </li>
               </ul>
           </nav>
       <% flash.each do |key, value| %>
