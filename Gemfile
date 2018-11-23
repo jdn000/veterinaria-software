@@ -62,7 +62,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jquery-rails'
-gem 'autoprefixer-rails'
+gem 'autoprefixer-rails', '~> 7.1','>=7.1.6'
 gem 'sprockets', '~> 3.7.2'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
