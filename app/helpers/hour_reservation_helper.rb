@@ -1,0 +1,2 @@
+module HourReservationHelper
+end

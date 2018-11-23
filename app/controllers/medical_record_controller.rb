@@ -1,0 +1,2 @@
+class MedicalRecordController < ApplicationController
+end

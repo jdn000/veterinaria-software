@@ -1,0 +1,2 @@
+class HourReservation < ApplicationRecord
+end
