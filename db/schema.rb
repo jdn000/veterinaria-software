@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_23_120716) do
+ActiveRecord::Schema.define(version: 2018_11_24_133851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attention", force: :cascade do |t|
+    t.string "tipo_atencion"
+    t.text "comentarios"
+  end
 
   create_table "attentions", force: :cascade do |t|
     t.string "tipo_atencion"
@@ -36,6 +41,17 @@ ActiveRecord::Schema.define(version: 2018_11_23_120716) do
     t.integer "user_id"
   end
 
+  create_table "medicalrecord", force: :cascade do |t|
+  end
+
+  create_table "pet", force: :cascade do |t|
+    t.string "nombre"
+    t.string "tipo_mascota"
+    t.string "sexo"
+    t.string "raza"
+    t.integer "edad"
+  end
+
   create_table "pets", force: :cascade do |t|
     t.string "nombre"
     t.string "tipo_mascota"
@@ -48,7 +64,6 @@ ActiveRecord::Schema.define(version: 2018_11_23_120716) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "id_producto"
     t.string "nombre_producto"
     t.string "tipo_producto"
     t.text "descripcion"
@@ -57,6 +72,16 @@ ActiveRecord::Schema.define(version: 2018_11_23_120716) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "provider_id"
+  end
+
+  create_table "provide", force: :cascade do |t|
+    t.string "nombre_proveedor"
+    t.string "rut"
+    t.string "razon_social"
+    t.string "direccion"
+    t.string "email"
+    t.string "giro"
+    t.integer "fono"
   end
 
   create_table "providers", force: :cascade do |t|
@@ -76,6 +101,18 @@ ActiveRecord::Schema.define(version: 2018_11_23_120716) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "usuarios", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_usuarios_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
   add_foreign_key "hour_reservations", "pets"
