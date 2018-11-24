@@ -1,16 +1,16 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-config.action_mailer.default_url_options = { host: 'https://veterinaria-doolittle.herokuapp.com/' }
-config.action_mailer.delivery_method = :smtp
-config.action_mailer.smtp_settings = {
-      address: "smtp.gmail.com",
-      port: 587,
-      authentication: "plain",
-      enable_starttls_auto: true,
-      user_name: "mi.veterinaria.0000@gmail.com",
-      password: "arduino1234"
+#config.action_mailer.default_url_options = { host: 'https://veterinaria-doolittle.herokuapp.com/' }
+#config.action_mailer.delivery_method = :smtp
+#config.action_mailer.smtp_settings = {
+#      address: "smtp.gmail.com",
+#      port: 587,
+#      authentication: "plain",
+#      enable_starttls_auto: true,
+#      user_name: "mi.veterinaria.0000@gmail.com",
+#      password: "arduino1234"
 
-  }
+ # }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -99,7 +99,19 @@ config.action_mailer.smtp_settings = {
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
-
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  host = 'veterinaria-doolittle.herokuapp.com'
+  config.action_mailer.default_url_options = { host: host }
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true
+  }
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
