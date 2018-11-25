@@ -1,0 +1,17 @@
+    <!-- Navigation -->
+
+
+     <nav class="navbar navbar-dark bg-prim  ">
+      <div class="container-fluid">       
+        <div class="navbar-header">
+         <a class="navbar-brand " href="#">Veterinaria doolittle</a>
+        </div>
+           <ul class="nav navbar-nav navbar-right ">
+            <li>   <% if current_user %>
+            <%= link_to 'Logout', destroy_user_session_path,:class =>"btn btn-primary btn-sm", method: :delete %>
+            <% else %>
+            <%= link_to 'Iniciar sesion/registrarse', new_user_session_path,:class =>"btn btn-primary btn-sm" %>
+            <% end %></li>
+           </ul>
+         </div>
+    </nav>
