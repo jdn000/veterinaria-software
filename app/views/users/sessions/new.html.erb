@@ -19,8 +19,8 @@
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Conectarse" %>
-  </div>
-<% end %>
+    <%= f.submit "Conectarse", class: "btn btn-primary" %>
 
-<%= render "users/shared/links" %>
+<% end %>
+ <h5> <%= link_to "Olvidó su contraseña?", new_password_path(resource_name)%></h5>
+  </div>

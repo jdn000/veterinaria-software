@@ -1,11 +1,12 @@
 <h2>Formulario de inscripcion</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(@user, as: resource_name, url: registration_path(@user)) do |f| %>
   <%= devise_error_messages! %>
+
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true,class: "form-control" %>
   </div>
 
   <div class="field">
@@ -13,17 +14,50 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password,class: "form-control" %>
   </div>
-
+  <div class="form-group">
+    <%= f.label :Confirme_su_contraseña %><br />
+    <%= f.password_field :password_confirmation,class: "form-control"%>
+  </div>
+   <div class="field">
+    <%= f.label :Rut %><br />
+    <%= f.text_field :rut,class: "form-control" %>
+  </div>
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre,class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :Apellido_paterno %><br />
+    <%= f.text_field :ap_pat,class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :Apellido_materno %><br />
+    <%= f.text_field :ap_mat ,class: "form-control"%>
+  </div>
+    <div class="field">
+    <%= f.label :Celular_de_contacto %><br />
+    <%= f.telephone_field :celular ,class: "form-control"%>
+  </div>
+    <div class="field">
+    <%= f.label :Direccion %><br />
+    <%= f.text_field :direccion,class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :Comuna %><br />
+     <%= f.select(:comuna,["Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón", "Vitacura", "Puente Alto", "Pirque", "San José de Maipo", "Colina", "Lampa", "Tiltil", "San Bernardo", "Buin", "Calera de Tango", "Paine", "Melipilla", "Alhué", "Curacaví", "María Pinto", "San Pedro", "Talagante", "El Monte", "Isla de Maipo", "Padre Hurtado", "Peñaflor"], {}, { :class => 'select' }) %>
+  </div>
+<%= f.hidden_field(:rol, :value=>"cliente") %>
+  <div class="actions">
+    <%= f.submit "Inscribirse",class: "btn btn-primary" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
 <% end %>
 
 <%= render "users/shared/links" %>
+
+
+
+
+

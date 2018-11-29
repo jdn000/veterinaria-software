@@ -7,11 +7,14 @@
          <a class="navbar-brand " href="#">Veterinaria doolittle</a>
         </div>
            <ul class="nav navbar-nav navbar-right ">
-            <li>   <% if current_user %>
-            <%= link_to 'Logout', destroy_user_session_path,:class =>"btn btn-primary btn-sm", method: :delete %>
+             <% if current_user %>
+         <div> <%= link_to 'Actualizar mis datos', edit_user_registration_path,:class =>"btn btn-primary btn-sm" %>
+            <%= link_to 'Cerrar Sesión', destroy_user_session_path,:class =>"btn btn-primary btn-sm", method: :delete %></div>
             <% else %>
-            <%= link_to 'Iniciar sesion/registrarse', new_user_session_path,:class =>"btn btn-primary btn-sm" %>
-            <% end %></li>
+            <div>
+             <%= link_to 'Iniciar sesion', new_user_session_path,:class=>"btn btn-primary"%>           
+             <%= link_to 'Registrarse', new_user_registration_path,:class=>"btn btn-primary " %></div>
+              <% end %>
            </ul>
          </div>
     </nav>
