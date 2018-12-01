@@ -1,0 +1,20 @@
+<p>
+  <strong>Nombre:</strong>
+  <%= @provider.nombre_proveedor %>
+</p>
+ 
+<p>
+  <strong>Rut:</strong>
+  <%= @provider.rut %>
+</p>
+ 
+<h2>products</h2>
+<%= render @provider.products %>
+
+
+<h2>Add a product:</h2>
+<%= render "products/form" %>
+
+ 
+<%= link_to 'Edit provider', edit_provider_path(@provider) %> |
+<%= link_to 'Back to providers', providers_path %>

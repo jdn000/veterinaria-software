@@ -15,11 +15,6 @@ ActiveRecord::Schema.define(version: 2018_11_29_144943) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "attention", force: :cascade do |t|
-    t.string "tipo_atencion"
-    t.text "comentarios"
-  end
-
   create_table "attentions", force: :cascade do |t|
     t.string "tipo_atencion"
     t.datetime "created_at", null: false
@@ -39,17 +34,6 @@ ActiveRecord::Schema.define(version: 2018_11_29_144943) do
     t.datetime "updated_at", null: false
     t.integer "pet_id"
     t.integer "user_id"
-  end
-
-  create_table "medicalrecord", force: :cascade do |t|
-  end
-
-  create_table "pet", force: :cascade do |t|
-    t.string "nombre"
-    t.string "tipo_mascota"
-    t.string "sexo"
-    t.string "raza"
-    t.integer "edad"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -72,16 +56,6 @@ ActiveRecord::Schema.define(version: 2018_11_29_144943) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "provider_id"
-  end
-
-  create_table "provide", force: :cascade do |t|
-    t.string "nombre_proveedor"
-    t.string "rut"
-    t.string "razon_social"
-    t.string "direccion"
-    t.string "email"
-    t.string "giro"
-    t.integer "fono"
   end
 
   create_table "providers", force: :cascade do |t|

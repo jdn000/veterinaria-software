@@ -1,54 +1,23 @@
 class ProductsController < ApplicationController
 
 
-
-	def index
-	  @products = Product.all
-	end
-
-
-	def show
-		@product = Product.find(params[:id])
-	end
-
-	def new
-		@product = Product.new
-	end
-
-	def create
-	  	@product = Product.new(product_params)
-	 
-	  	if @product.save
-	    	redirect_to @product
-	  	else
-	    	render 'new'
-	  	end
-	end
-
-
-	def edit
-	  @product = Product.find(params[:id])
-	end
-	def update
-	  @product = Product.find(params[:id])
-	 
-	  if @product.update(product_params)
-	    redirect_to @product
-	  else
-	    render 'edit'
-	  end
-	end
-
-
-	def destroy
-	  @product = Product.find(params[:id])
-	  @product.destroy
-	 
-	  redirect_to products_path
-	end
+#no permitir borrar coomentarios 
+  http_basic_authenticate_with name: "cloud", password: "123", only: :destroy	
+  def create
+    @provider = Provider.find(params[:provider_id])
+    @product = @provider.products.create(product_params)
+    redirect_to provider_path(@provider)
+  end
+ 
+  def destroy
+    @provider = Provider.find(params[:provider_id])
+    @product = @provider.products.find(params[:id])
+    @product.destroy
+    redirect_to provider_path(@provider)
+  end
 	private
 	  def product_params
-	    params.require(:product).permit(:id_producto, :nombre_producto, :tipo_producto, :descripcion, :cantidad, :caducidad)
+	    params.require(:product).permit(:nombre_producto, :tipo_producto, :descripcion, :cantidad, :caducidad)
 	  end
 
 

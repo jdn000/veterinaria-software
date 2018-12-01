@@ -1,7 +1,9 @@
 <h1>Listing Products</h1>
 <%= link_to 'New product', new_product_path %>
+<body>
 <table>
   <tr>
+
     <th>Nombre </th>
     <th>Tipo </th>
     <th>Descripcion </th>
@@ -12,6 +14,7 @@
  
 <% @products.each do |product| %>
   <tr>  
+
       <td><%= product.nombre_producto %></td>
       <td><%= product.tipo_producto %></td>
       <td><%= product.descripcion %></td>
@@ -24,4 +27,5 @@
   </tr>
 <% end %>
 </table>
+</body>
 
