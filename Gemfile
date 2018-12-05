@@ -68,3 +68,4 @@ gem 'autoprefixer-rails', '~> 7.1','>=7.1.6'
 gem 'sprockets', '~> 3.7.2'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
+
