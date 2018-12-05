@@ -4,6 +4,13 @@
   <tr>
     <th>Nombre</th>
     <th>Rut</th>
+    <th>Razon social</th>
+    <th>Direccion</th>
+    <th>Email</th>
+    <th>Giro</th>
+    <th>Fono</th>
+
+
     <th colspan="3"></th>
   </tr>
  
@@ -11,6 +18,12 @@
   <tr>
     <td><%= provider.nombre_proveedor %></td>
     <td><%= provider.rut %></td>
+    <td><%= provider.razon_social %></td>
+    <td><%= provider.direccion %></td>
+    <td><%= provider.email %></td>
+    <td><%= provider.giro %></td>
+    <td><%= provider.fono %></td>
+
     <td><%= link_to 'Show', provider_path(provider) %></td>
     <td><%= link_to 'Edit', edit_provider_path(provider) %></td>
     <td><%= link_to 'Destroy', provider_path(provider),

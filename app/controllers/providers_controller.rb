@@ -49,7 +49,7 @@ class ProvidersController < ApplicationController
 	end
 	private
 	  def provider_params
-	    params.require(:provider).permit(:nombre_proveedor, :rut)
+	    params.require(:provider).permit(:nombre_proveedor, :rut, :razon_social, :direccion, :email, :giro, :fono)
 	  end
 
 end
