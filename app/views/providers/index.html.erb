@@ -1,4 +1,5 @@
 <h1>Listing providers</h1>
+<%= select_tag 'person',options_from_collection_for_select(@providers, 'id', 'nombre_proveedor') %>
 <%= link_to 'New Provider', new_provider_path %>
 <table>
   <tr>
