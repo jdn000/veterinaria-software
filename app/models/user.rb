@@ -24,4 +24,4 @@ class User < ApplicationRecord
   self.direccion= direccion.downcase
  end
 
-  end       
+end       
