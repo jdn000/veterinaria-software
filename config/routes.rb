@@ -12,9 +12,22 @@ Rails.application.routes.draw do
 
 #ruta articulos
   resources :providers 	 
-  root 'providesr#index'
+  root 'providers#index'
 #ruta comentarios
 	resources :providers do
 	  resources :products
 	end
+
+
+
+#ruta mascota
+ get 'pet/index'
+root :to => "pet#index"
+
+
+  resources :pets   
+  root 'pet#index'
+
+ 
+
 end

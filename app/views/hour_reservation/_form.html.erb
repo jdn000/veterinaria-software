@@ -1,0 +1,13 @@
+<%= form_for([@reservation]) do |f| %>
+
+
+   <p>
+    <%= f.label :fecha_reserva %><br>
+    <%= f.date_field :fecha_reserva %>
+
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
