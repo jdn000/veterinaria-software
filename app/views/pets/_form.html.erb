@@ -1,46 +1,34 @@
-<%= form_for @pet do |f| %>
-  <% if @pet.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@pet.errors.count, "error") %>
-        prohibited this pet from being saved:
-      </h2>
-      <ul>
-        <% @pet.errors.full_messages.each do |msg| %>
-            <li>
-              <%= msg %>
-            </li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %> 
 
-  
+<h1><%=@user.nombre%></h1>
+<%= form_for [@user,@pet]  do |f| %>
   <p>
     <%= f.label :nombre_mascota %><br>
-    <%= f.text_field :nombre %>
+    <%= f.text_field :nombre,class: "form-control"%>
   </p>
  
   <p>
     <%= f.label :tipo_mascota %><br>
-    <%= f.text_field :tipo_mascota %>
+  <%= f.select(:tipo_mascota,["Gato","Perro"], {}, { :class => 'form-control select' }) %>
   </p>
   <p>
     <%= f.label :sexo_mascota %><br>
-    <%= f.text_field :sexo %>
+  <%= f.select(:sexo,["Macho","Hembra"], {}, { class: 'select ' }) %>
   </p>
   <p>
     <%= f.label :raza_mascota %><br>
-    <%= f.text_field :raza %>
+    <%= f.text_field :raza,class: "form-control" %>
   </p>
   <p>
     <%= f.label :edad_mascota %><br>
-    <%= f.number_field :edad %>
+    <%= f.number_field :edad,in: 1.0..20.0, step: 1.0 ,class: "form-control"%>
+  </p>
+  <p>
+
   </p>
 
- 
   <p>
     <%= f.submit %>
-  </p>
+  
+  </p>  
 <% end %>
 

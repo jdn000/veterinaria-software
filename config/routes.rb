@@ -17,16 +17,14 @@ Rails.application.routes.draw do
 	resources :providers do
 	  resources :products
 	end
-
+resources :users do
+  resources :pets
+end
 
 
 #ruta mascota
  get 'pet/index'
 root :to => "pet#index"
-
-
-  resources :pets   
-  root 'pet#index'
 
  
 

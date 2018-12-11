@@ -1,20 +1,23 @@
- <p>
-  <strong>Nombre Mascota:</strong>
-  <%= @pet.nombre %>
-</p>
-<p>
-  <strong>Tipo Mascota:</strong>
-  <%= @pet.tipo_mascota %>
-</p>
-<p>
-  <strong>Sexo Mascota:</strong>
-  <%= @pet.sexo %>
-</p>
-<p>
-  <strong>Raza Mascota:</strong>
-  <%= @pet.raza %>
-</p>
-<p>
-  <strong>Edad Mascota:</strong>
-  <%= @pet.edad %>
-</p>
+
+<table>
+  <tr>
+
+    <th>Nombre  </th>
+    <th>Tipo </th>
+    <th>Sexo </th>
+    <th>Raza </th>
+    <th>Edad  </th>
+    <th colspan="3"></th>
+  </tr>
+ 
+  <tr>  
+      <td><%= @pet.nombre %></td>
+      <td><%= @pet.tipo_mascota %></td>
+      <td><%= @pet.sexo %></td>
+      <td><%= @pet.raza %></td>
+      <td><%= @pet.edad %> años</td>
+
+  </tr>
+
+</table>
+<%=link_to "Volver", :back, :class=>"btn btn-primary btn-sm"%>

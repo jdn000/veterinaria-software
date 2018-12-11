@@ -1,6 +1,4 @@
 
-  
-
 class Provider < ApplicationRecord	
 
   include RunCl::ActAsRun

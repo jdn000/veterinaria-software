@@ -1,30 +1,26 @@
-<h1>Listing pets</h1>
-<%= link_to 'Nueva Mascota', new_pet_path %>
-<body>
+<h1>Mis mascotas</h1>
+
 <table>
   <tr>
 
-    <th>Nombre Mascota </th>
-    <th>Tipo Mascota</th>
-    <th>Sexo Mascota</th>
-    <th>Raza Mascota </th>
-    <th>Edad Mascota </th>
+    <th>Nombre  </th>
+    <th>Tipo </th>
+    <th>Sexo </th>
+    <th>Raza </th>
+    <th>Edad  </th>
     <th colspan="3"></th>
   </tr>
  
 <% @pets.each do |pet| %>
   <tr>  
-
       <td><%= pet.nombre %></td>
       <td><%= pet.tipo_mascota %></td>
       <td><%= pet.sexo %></td>
       <td><%= pet.raza %></td>
-      <td><%= pet.edad %></td>
-    <td><%= link_to 'Show', pet_path(pet) %></td>
-    <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
-    <td><%= link_to 'Destroy', pet_path(pet),
-                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= pet.edad %> años</td>
+    <td><%= link_to 'Ver ', user_pet_path(id:pet.id), :class=>"btn btn-primary"%></td>
+    <td><%= link_to 'Editar', edit_user_pet_path(id:pet.id), :class=>"btn btn-primary btn-sm"%></td>
   </tr>
 <% end %>
 </table>
-</body>
+
