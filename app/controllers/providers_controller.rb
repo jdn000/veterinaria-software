@@ -4,6 +4,7 @@ class ProvidersController < ApplicationController
 #http_basic_authenticate_with name: "cloud", password: "123", except: [:index, :show]
 	def index
 	  @providers = Provider.all
+	  @users = User.all
 	end
 
 

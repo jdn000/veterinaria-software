@@ -1,34 +1,50 @@
-<h1>Listing providers</h1>
+<h1>Proveedores</h1>
+<!-- 
 <%= select_tag 'person',options_from_collection_for_select(@providers, 'id', 'nombre_proveedor') %>
-<%= link_to 'New Provider', new_provider_path %>
+-->
+
 <table>
   <tr>
-    <th>Nombre</th>
-    <th>Rut</th>
-    <th>Razon social</th>
-    <th>Direccion</th>
-    <th>Email</th>
-    <th>Giro</th>
-    <th>Fono</th>
-
-
-    <th colspan="3"></th>
+    <th>Nombre&nbsp;</th>
+    <th>Rut&nbsp;</th>
+    <th>Razon social&nbsp;</th>
+    <th>Direccion&nbsp;</th>
+    <th>Email&nbsp;</th>
+    <th>Giro&nbsp;</th>
+    <th>Fono&nbsp;</th>
+    <th colspan='3'></th>
   </tr>
  
 <% @providers.each do |provider| %>
   <tr>
-    <td><%= provider.nombre_proveedor %></td>
-    <td><%= provider.rut %></td>
-    <td><%= provider.razon_social %></td>
-    <td><%= provider.direccion %></td>
-    <td><%= provider.email %></td>
-    <td><%= provider.giro %></td>
-    <td><%= provider.fono %></td>
+    <td><%= provider.nombre_proveedor %>&nbsp;</td>
+    <td><%= provider.rut %>&nbsp;</td>
+    <td><%= provider.razon_social %>&nbsp;</td>
+    <td><%= provider.direccion %>&nbsp;</td>
+    <td><%= provider.email %>&nbsp;</td>
+    <td><%= provider.giro %>&nbsp;</td>
+    <td><%= provider.fono %>&nbsp;</td>
 
-    <td><%= link_to 'Show', provider_path(provider) %></td>
-    <td><%= link_to 'Edit', edit_provider_path(provider) %></td>
-    <td><%= link_to 'Destroy', provider_path(provider),
-                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Ver', provider_path(provider) %>&nbsp;</td>
+    <td><%= link_to 'Editar', edit_provider_path(provider) %>&nbsp;</td>
+    <td><%= link_to 'Eliminar', provider_path(provider),
+                    method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
   </tr>
 <% end %>
 </table>
+<!-- 
+<% @users.each do |user| %>
+    <% if user.id == 1 %> 
+        <%= 'Hola   '+user.nombre %>
+    <% end %>
+<% end %>
+
+<% @providers.each do |provider| %>
+    <% if provider.id != 1 %> 
+        <%= id=provider.id %>
+        <%= 'Hola   '+provider.nombre_proveedor  %>
+    <% end %>
+<% end %>
+-->
+</br>
+<%= link_to 'Nuevo proveedor', new_provider_path %>
