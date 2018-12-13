@@ -1,0 +1,27 @@
+<h1>Lista de proveedores</h1>
+<table>
+  <tr>
+    <th>Nombre </th>
+    <th>Rut</th>
+    <th>Razón social</th>
+    <th>Dirección</th>
+    <th>Email</th>
+    <th>fono</th>
+    <th>Giro</th>
+    <th></th>
+  </tr>
+  
+  <%= @providers.each do |provider| %>
+  
+  <tr>
+    <td><%= provider.nombre_proveedor%></td>
+    <td><%= provider.rut %></td>
+  <td><%= provider.razon_social %></td>
+  <td><%= provider.direccion %></td>
+  <td><%= provider.email %></td>
+  <td><%= provider.fono %></td>
+  <td><%= provider.giro %></td>
+    <td><%= link_to 'Detalles', provider_path(provider),class: "btn btn-primary btn-sm"%></td>
+  </tr>   
+  <% end %>
+</table>

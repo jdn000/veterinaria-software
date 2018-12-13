@@ -16,7 +16,8 @@
 
             <% if  current_user.rol=='admin' %>
 
-                <%= link_to 'Nuevo proveedor  ', new_provider_path,:class =>"btn btn-primary btn-sm" %>
+                <%= link_to 'Proveedores  ', providers_index_path,:class =>"btn btn-primary btn-sm" %>
+                <%= link_to 'Productos ', providers_path,:class =>"btn btn-primary btn-sm" %>
  
                 <%elsif current_user.rol=='cliente'%>
                 <%=link_to 'Inscribir Mascota',new_user_pet_path(current_user.id),:class=>"btn btn-primary btn-sm" %> 

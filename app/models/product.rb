@@ -1,6 +1,5 @@
 class Product < ApplicationRecord
-  belongs_to :provider
-
+  belongs_to :provider,required: false
   before_save :minimizando_entradas
 
   VALID_NAME_REGEX = /(?=^.{2,50}$)[a-zA-ZñÑáéíóúÁÉÍÓÚ]+(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]+)?/

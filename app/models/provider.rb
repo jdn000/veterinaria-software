@@ -8,7 +8,7 @@ class Provider < ApplicationRecord
   before_save :minimizando_entradas
 
 
-	has_many :products, dependent: :destroy
+	has_many :products
 	validates_associated :products
 
   VALID_NAME_REGEX = /(?=^.{2,50}$)[a-zA-ZñÑáéíóúÁÉÍÓÚ]+(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]+)?/
@@ -22,6 +22,7 @@ class Provider < ApplicationRecord
   validates :email, format: { with: VALID_EMAIL_REGEX , message: "es invalido" }, confirmation: { case_sensitive: false }, uniqueness: { message: "Ya existe" }, length: { in: 7..254 , :message => " El correo debe estar los 7 a 254 caracteres"}, presence: { message: "no puede estar en blanco" }, uniqueness: true
   
   validates :fono ,presence:true,length: { in: 2..50 }, uniqueness: true
+
   private
   def minimizando_entradas
     self.nombre_proveedor= nombre_proveedor.downcase

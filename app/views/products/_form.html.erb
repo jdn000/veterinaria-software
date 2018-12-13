@@ -1,9 +1,6 @@
 
+<%= form_for  [ @provider, @product ]  do |f| %>
 
-
-
-
-<%= form_for([@provider, @provider.products.build]) do |f| %>
 
   <p>
     <%= f.label :nombre_producto %><br>

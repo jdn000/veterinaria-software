@@ -1,3 +1,4 @@
+<strong><h2>Datos del proveedor:</h2></strong>
 <p>
   <strong>Nombre:</strong>
   <%= @provider.nombre_proveedor %>
@@ -29,13 +30,32 @@
 </p>
 
  
-<h2>products</h2>
-<%= render @provider.products %>
+<strong><h2>Poductos asociados a este proveedor </h2></strong>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Tipo</th>
+    <th>Descripcion</th>
+    <th>Cantidad</th>
+    <th>Caducidad</th>
+    <th></th>
+  </tr>
+<% @products.each do |product| %>
+  <tr>  
+
+      <td><%= product.nombre_producto %></td>
+      <td><%= product.tipo_producto %></td>
+      <td><%= product.descripcion %></td>
+      <td><%= product.cantidad %></td>
+      <td><%= product.caducidad %></td>
+<td><%= link_to 'editar', edit_provider_product_path(product,:product_id=> product.id), class: "btn btn-primary btn-sm"  %> </td>
 
 
-<h2>Add a product:</h2>
-<%= render "products/form" %>
+  </tr>
+<% end %>  
+</table>
 
- 
-<%= link_to 'Edit provider', edit_provider_path(@provider) %> |
-<%= link_to 'Back to providers', providers_path %>
+
+<%= link_to 'Nuevo producto', new_provider_product_path(@provider,:proveedor=> @provider), class: "btn btn-primary btn-sm"  %> 
+
+<%= link_to 'Volver', providers_path, class: "btn btn-primary btn-sm" %>
