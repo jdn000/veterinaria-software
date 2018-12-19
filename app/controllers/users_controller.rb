@@ -38,7 +38,7 @@ before_action :require_certain_role
 private
 
 	  def usuario_params
-	    params.require(:user).permit(:email, :password, :password_confirmation,:nombre, :ap_pat,:ap_mat,:rut,:direccion,:celular,:rol,:comuna)
+	    params.require(:user).permit(:email, :password, :password_confirmation,:nombre, :ap_pat,:ap_mat,:rut,:direccion,:celular,:role,:comuna)
 	  end
     def allow_without_password
       if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
