@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-
+load_and_authorize_resource
 
 #no permitir borrar coomentarios 
   http_basic_authenticate_with name: "cloud", password: "123", only: :destroy	

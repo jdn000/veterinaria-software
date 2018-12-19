@@ -1,23 +1,23 @@
 class PetsController < ApplicationController
 
     def index
-      @user=current_user
-	  @pets = Pet.where("user_id = ?",current_user.id)
+      @user=current_devise_user
+	  @pets = Pet.where("user_id = ?",current_devise_user.id)
 
 	end
 
 	def show
-		@user=current_user
+		@user=current_devise_user
 		@pet = Pet.find(params[:id])
 	end
 
 	def new
-		@user=current_user
+		@user=current_devise_user
 		@pet =Pet.new
 	end
 
 	def create
-		@user=current_user
+		@user=current_devise_user
 	  	@pet = @user.pet.new(pet_params)
 	  	if @pet.save
         flash[:success] = "Su mascota ha sido inscrita exitosamente"	  		
@@ -30,13 +30,13 @@ class PetsController < ApplicationController
 
 
 	def edit
-	  @user=current_user		
+	  @user=current_devise_user		
 	  @pet = Pet.find(params[:id])
 	end
 
 
 	def update
-	  @user=current_user
+	  @user=current_devise_user
 	  @pet = Pet.find(params[:id])
 	 
 	  if @pet.update(pet_params)
@@ -61,4 +61,5 @@ class PetsController < ApplicationController
 	  def pet_params
 	    params.require(:pet).permit(:nombre, :tipo_mascota, :sexo, :raza, :edad)
 	  end
+
 end

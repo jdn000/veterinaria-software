@@ -1,0 +1,27 @@
+
+<h1>Lista de usuarios</h1>
+
+<table>
+  <tr>
+
+    <th>Nombre </th>
+    <th>Apellido paterno </th>
+    <th>Apellido materno </th>
+    <th>Rol </th>
+    <th></th>
+  </tr>
+
+ 
+<% @users.each do |user| %>
+  <tr>  
+
+      <td><%= user.nombre %></td>
+      <td><%= user.ap_pat %></td>
+      <td><%= user.ap_mat %></td>
+      <td><%= user.role %></td>
+      <td><%= link_to 'Detalles', user_path(user), class: "btn btn-primary btn-sm" %> </td>
+
+  </tr>
+<% end %>
+
+</table>

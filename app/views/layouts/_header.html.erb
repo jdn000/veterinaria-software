@@ -6,28 +6,28 @@
         </div>
            <ul class="nav navbar-nav navbar-right ">
            <div>
-             <% if current_user %>
+             <% if current_devise_user %>
             
 
-                <%= link_to 'Actualizar mis datos', edit_user_registration_path,:class =>"btn btn-primary btn-sm" %>
+                <%= link_to 'Actualizar mis datos', edit_devise_user_registration_path(current_devise_user),:class =>"btn btn-primary btn-sm" %>
 
-                <%= link_to 'Cerrar Sesión', destroy_user_session_path,:class =>"btn btn-primary btn-sm", method: :delete %>
+                <%= link_to 'Cerrar Sesión', destroy_devise_user_session_path,:class =>"btn btn-primary btn-sm", method: :delete %>
                 
 
-            <% if  current_user.rol=='admin' %>
+            <% if  current_devise_user.role=='admin' %>
 
                 <%= link_to 'Proveedores  ', providers_index_path,:class =>"btn btn-primary btn-sm" %>
                 <%= link_to 'Productos ', providers_path,:class =>"btn btn-primary btn-sm" %>
  
-                <%elsif current_user.rol=='cliente'%>
-                <%=link_to 'Inscribir Mascota',new_user_pet_path(current_user.id),:class=>"btn btn-primary btn-sm" %> 
-                <%=link_to 'Mis Mascotas',user_pets_path(current_user.id),:class=>"btn btn-primary btn-sm" %>                               
+                <%elsif current_devise_user.role=='cliente'%>
+                <%=link_to 'Inscribir Mascota',new_user_pet_path(current_devise_user.id),:class=>"btn btn-primary btn-sm" %> 
+                <%=link_to 'Mis Mascotas',user_pets_path(current_devise_user.id),:class=>"btn btn-primary btn-sm" %>                               
            </div>
            <%end%>
             <% else %>
   
-               <%= link_to 'Iniciar sesion', new_user_session_path,:class=>"btn btn-primary btn-sm"%>           
-               <%= link_to 'Registrarse', new_user_registration_path,:class=>"btn btn-primary btn-sm" %>
+               <%= link_to 'Iniciar sesion', new_devise_user_session_path,:class=>"btn btn-primary btn-sm"%>           
+               <%= link_to 'Registrarse', new_devise_user_registration_path,:class=>"btn btn-primary btn-sm" %>
               </div>
             <% end %>              
           </ul>
