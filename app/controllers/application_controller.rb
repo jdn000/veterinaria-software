@@ -28,7 +28,7 @@ def permitted_parameters
           added_attrs = [:email, :password, :password_confirmation,:nombre, :ap_pat,:ap_mat,:rut,:direccion,:celular,:rol,:comuna ]
           devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
           devise_parameter_sanitizer.permit :account_update, keys: added_attrs
-ends 
+end
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
   #  super(resource)
