@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
  before_action :allow_without_password, only: [:update]	
-before_action :require_certain_role
+#before_action :require_certain_role
 	def index
      @users=User.where.not(role: "admin")
 	end
@@ -13,12 +13,12 @@ before_action :require_certain_role
 
 	def create
 	    @user = User.new(usuario_params)
-	  	if @user.save
-      		flash[:success] = "creado con exito" 	  		
-	    	redirect_to  users_path
-	  	else
-	    	render 'new'
-	  	end
+
+	  	  respond_to do |format|
+		  format.html {redirect_to users_path}
+		  format.js
+		  end
+
 	end
 
 	def edit
@@ -48,7 +48,7 @@ private
     end
 
 	  def require_certain_role
-	  	if current_devise_user.role=='cliente' || current_devise_user.role=='veterinario'||current_devise_user.role=='peluquero' 
+	  	if current_user.role=='cliente' || current_user.role=='veterinario'||current_user.role=='peluquero' 
 	  		flash[:error]="No esta autorizado para acceder a esta pagina"
 	  		redirect_to root_path
 

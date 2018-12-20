@@ -56,7 +56,7 @@ before_action :require_certain_role
 	    params.require(:provider).permit(:nombre_proveedor, :rut, :razon_social, :direccion, :email, :giro, :fono)
 	  end
 	  def require_certain_role
-	  	if current_devise_user.role=='cliente' || current_devise_user.role=='veterinario'||current_devise_user.role=='peluquero' 
+	  	if current_user.role=='cliente' || current_user.role=='veterinario'||current_user.role=='peluquero' 
 	  		flash[:error]="No esta autorizado para acceder a esta pagina"
 	  		redirect_to root_path
 

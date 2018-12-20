@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users, module: "users",as: 'devise' #rutaspara el modulo de user devise
+  
+  devise_for :users, module: "users",:path_prefix =>'devise' #rutaspara el modulo de user devise
   resources :users #rutas personalizadas para crear usuarios
-
+post '/users/new', to: 'users#create'
 get '/products/info/:id',to:'products#prod_info',as: 'product'
 get '/products/info/:id/edit',to:'products#edit',as:'product_edit'
 get '/providers/index',to:'providers#index_prov',as:'providers_index'

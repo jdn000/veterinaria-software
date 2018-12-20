@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-   before_action :sign_up_params, only: [:create]
+ #  before_action :sign_up_params, only: [:create]
    #before_action :configure_account_update_params, only: [:update]
   # before_action :sign_up_params, if: :devise_controller?
 
@@ -55,9 +55,9 @@ private
  # end
 #
     # Modified Devise params for user login
-    def sign_up_params
-      params.require(:user).permit( :email,:password,:nombre, :ap_pat,:ap_mat,:rut,:direccion,:celular,:rol,:comuna)
-    end
+ #   def sign_up_params
+  #    params.require(:user).permit( :email,:password,:nombre, :ap_pat,:ap_mat,:rut,:direccion,:celular,:rol,:comuna)
+   # end
 
   # The path used after sign up.
  #  def after_sign_up_path_for(resource)
