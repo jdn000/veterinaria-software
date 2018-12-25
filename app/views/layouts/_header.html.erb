@@ -18,6 +18,7 @@
 
                 <%= link_to 'Proveedores  ', providers_path,:class =>"btn btn-primary btn-sm" %>
                 <%= link_to 'Productos ', products_path,:class =>"btn btn-primary btn-sm" %>
+                <%= link_to 'Consultas medicas ', attentions_path,:class =>"btn btn-primary btn-sm" %>
                  <%= link_to 'Usuarios ', users_path, :class =>"btn btn-primary btn-sm" %>
                 <%elsif current_user.role=='cliente'%>
                 <%=link_to 'Inscribir Mascota',new_user_pet_path(current_user.id),:class=>"btn btn-primary btn-sm" %> 

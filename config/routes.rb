@@ -5,13 +5,13 @@ Rails.application.routes.draw do
 post '/users/new', to: 'users#create'
 
 get '/users_rol', to: 'application#user_rol'
-get '/provider_select/',to:  'providers#provider_select',as:'provider_select'
 
   root 'application#inicio'
 
   resources :providers   
   resources :products
-  end
+  resources :attentions
+
 resources :users do
   resources :pets, only:[:new,:edit,:show,:index]
 end

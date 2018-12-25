@@ -1,14 +1,6 @@
-<% if @product.errors.empty? %>
-	// add the row to the table, show alert and hide modal
-	$('#container').append(' <%= j render "row", product: @product %>');
-	$('#product-modal').remove();
-	$('.modal-backdrop').remove();
-	$('.alert-success').html("El proveedor ha sido creado con éxito").show();
-<% else %>
-	<% puts "Hay un error en formulario" %>
-	console.log("<%= @product.errors.messages %>")
-	error = document.getElementById('modal-errores');
-	error.innerHTML = '<%=  j render "error" %>';
-	error.style.display = "block";
-	// $('#modal-errores').html('<%= j render "error" %>');
-<% end %>
+
+
+$('<%= j render "form", title: "Editar Producto" %>').on('hidden.bs.modal', function (e) {
+  $(this).remove();
+  $('.modal-backdrop').remove();
+}).modal();

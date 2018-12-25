@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_19_004232) do
+ActiveRecord::Schema.define(version: 2018_12_25_163648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(version: 2018_12_19_004232) do
     t.string "tipo_atencion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "descripcion"
+    t.integer "hour_id"
+    t.integer "pet_id"
+    t.integer "user_id"
   end
 
   create_table "hour_reservations", force: :cascade do |t|
@@ -27,13 +31,6 @@ ActiveRecord::Schema.define(version: 2018_12_19_004232) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "pet_id"
-  end
-
-  create_table "medical_records", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "pet_id"
-    t.integer "user_id"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -90,10 +87,11 @@ ActiveRecord::Schema.define(version: 2018_12_19_004232) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "attentions", "hour_reservations", column: "hour_id"
+  add_foreign_key "attentions", "pets"
+  add_foreign_key "attentions", "users"
   add_foreign_key "hour_reservations", "pets"
   add_foreign_key "hour_reservations", "users"
-  add_foreign_key "medical_records", "pets"
-  add_foreign_key "medical_records", "users"
   add_foreign_key "pets", "users"
   add_foreign_key "products", "providers"
 end

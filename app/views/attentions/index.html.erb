@@ -1,0 +1,35 @@
+<h1>Historial medico</h1>
+<div class="head_content">
+  <div class="col-md-10 col-sm-12">
+    
+  </div>
+
+</div>
+
+<div class="contenedor">
+  <div class="contenedor">
+    <% if @attentions.length > 0 %>
+      <% @attentions.each do |attention| %>
+        <%= render "row", attention: attention %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+ <div class="col-sm-1">
+    <%= link_to 'Home', root_path, :class => 'btn btn-primary' %>
+  </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#tabla-datos").dataTable({
+      "lengthChange": false,
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+      },
+      "pageLength": 5
+    });
+  });
+</script>
