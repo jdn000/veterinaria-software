@@ -16,8 +16,8 @@
 
             <% if  current_user.role=='admin' %>
 
-                <%= link_to 'Proveedores  ', providers_index_path,:class =>"btn btn-primary btn-sm" %>
-                <%= link_to 'Productos ', providers_path,:class =>"btn btn-primary btn-sm" %>
+                <%= link_to 'Proveedores  ', providers_path,:class =>"btn btn-primary btn-sm" %>
+                <%= link_to 'Productos ', products_path,:class =>"btn btn-primary btn-sm" %>
                  <%= link_to 'Usuarios ', users_path, :class =>"btn btn-primary btn-sm" %>
                 <%elsif current_user.role=='cliente'%>
                 <%=link_to 'Inscribir Mascota',new_user_pet_path(current_user.id),:class=>"btn btn-primary btn-sm" %> 
@@ -31,4 +31,4 @@
             <% end %>              
           </ul>
       </div>
-    </nav>
+    </nav>s

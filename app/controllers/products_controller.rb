@@ -1,60 +1,56 @@
 class ProductsController < ApplicationController
-
-  def index 
-    @provider=Provider.find(params[:id])
-    @products =Product.all
-
-  end
-
-  def prod_info
-    @product=Product.find(params[:id])   
-  end
+  before_action :set_product, only: [:show,:destroy,:edit,:update]
+  before_action :authenticate_user!
 
   def new
-    @provider=Provider.where(id: params[:proveedor]).first  
     @product = Product.new
   end
-  
+  def index
+    @products = Product.all
+  end
+
+  def show
+  end
+
+
+
   def create
-    @provider= Provider.find(params[:provider_id])
-    @product= @provider.products.new(product_params)
-      if @product.save
-      flash[:success] = "creado con exito"      
-      redirect_to providers_path
-    else
-      render 'edit'
+    @product = Product.create(product_params)
+
+    respond_to do |format|
+      format.html {redirect_to products_path}
+      format.js
     end
   end
 
   def edit
-    @product =Product.find(params[:id])
-    @provider = Provider.all.where( ["id =?", @product.provider_id] ).first
   end
 
   def update
-    @provider = Provider.find(params[:provider_id])
-    @product = Product.find(params[:id])
-    if @product.update(product_params)
-      flash[:success] = "Updateado con exito"      
-      redirect_to providers_path
-    else
-      render 'edit'
-    end
-  end 
 
-  def destroy
-    @provider = Provider.find(params[:provider_id])
-    @product = @provider.products.find(params[:id])
-    @product.destroy
-    redirect_to provider_path(@provider)
+    respond_to do |format|
+      if @product.update(product_params)
+        format.html { redirect_to products_path,  notice: 'Se actualizaron los datos'}
+      else
+        render 'edit'
+      end
+    end
   end
 
+  def destroy
+    @product.destroy
 
-	private
-	  def product_params
-	    params.require(:product).permit(:nombre_producto, :tipo_producto, :descripcion, :cantidad, :caducidad)
-	  end
+    redirect_to products_path
+  end
 
+  private
 
+  def product_params
+    params.require(:product).permit(:nombre_producto, :tipo_producto, :descripcion, :cantidad, :caducidad, :provider_id)
+  end
 
+  def set_product
+    @product = Product.find(params[:id])
+  end
 end
+

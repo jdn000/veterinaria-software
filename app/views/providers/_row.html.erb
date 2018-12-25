@@ -1,0 +1,20 @@
+<tr id="<%= provider.id %>">
+    <td><%= provider.nombre_proveedor %></td>
+    <td><%= provider.rut %></td>
+    <td><%= provider.razon_social %></td>
+    <td><%= provider.direccion %></td>
+    <td><%= provider.email %></td>
+    <td><%= provider.giro %></td>
+    <td><%= provider.fono %></td>
+</tr>
+
+    <td><%= link_to 'editar ', edit_provider_path(provider), :class=>"btn btn-primary", remote: true%></td>
+    
+    <td></td><td></td><td></td><td></td><td></td>
+    <td><%= link_to raw('<i class="fa fa-trash" aria-hidden="true"></i>'), provider_path(provider), :class => 'btn btn-danger',
+                  data: {confirm: "Esta seguro?"},
+                  remote: true,
+                  method: :delete  %></td>
+
+
+

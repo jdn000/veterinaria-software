@@ -1,0 +1,27 @@
+<div class="col-md-6">
+  <div class="panel panel-primary conductor">
+    <div class="panel-heading">
+      <%= product.nombre_producto %> - <%=product.tipo_producto%>
+    </div>
+    <div class="panel-body">
+      <div class="product_provider">
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Nombre:</strong> <%= product.nombre_producto %></li>
+            <li class="list-group-item"><strong>Tipo:</strong> <%= product.tipo_producto %></li>
+            <li class="list-group-item"><strong>Descripcion:</strong> <%= product.descripcion %></li>
+            <li class="list-group-item"><strong>Cantidad:</strong> <%= product.cantidad %></li>
+            <li class="list-group-item"><strong>Canducidad:</strong> <%= product.caducidad %></li>
+            <li class="list-group-item"><strong>id proveedor:</strong> <%= product.provider_id %></li>
+        </ul>
+      </div>
+      <div class="botones">
+        <%= link_to raw('<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'), edit_product_path(product), remote: true, :class => 'btn btn-warning'%>
+        <%= link_to raw('<i class="fa fa-trash" aria-hidden="true"></i>'),product_path(product), :class => 'btn btn-danger',
+              data: {confirm: "Esta seguro?"},
+              remote: true,
+              method: :delete  %>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,30 +1,43 @@
-<h1>Productos</h1>
-<table>
-  <tr>
-    <th>Nombre </th>
-    <th>Tipo </th>
-    <th>Descripcion </th>
-    <th>Cantidad </th>
-    <th>Caducidad </th>
-    <th></th>
-  </tr>
- 
-<% @providers.each do |provider| %>
-   
-    <%if (provider.products.count) > 0 %>
-        <% provider.products.each do |product|%>
-          <tr>  
-              <td><%= product.nombre_producto %></td>
-              <td><%= product.tipo_producto %></td>
-              <td><%= product.descripcion %></td>
-              <td><%= product.cantidad %></td>
-              <td><%= product.caducidad %></td>
-              <td><%=link_to 'informacion producto', product_path(product)%></td>
-        <% end %>
-    
-    <%end%>
-    
-            </tr>
-<%end%>
-</table>
-<%= link_to 'Nuevo proveedor', new_provider_path, class: "btn btn-primary btn-sm" %>
+<div class="head_content">
+  <div class="col-md-10 col-sm-12">
+    <p>Todos los Proveedores</p>
+  </div>
+  <div class="col-md-2 col-sm-12">
+    <%= link_to 'Agregar', new_provider_path, remote: true, :class => 'btn btn-primary add_btn' %>
+  </div>
+</div>
+
+<div class="contenedor">
+  <table class="table" id="tabla-datos">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Rut</th>
+        <th>Razon social</th>
+        <th>Direccion</th>
+        <th>Email</th>
+        <th >Giro</th>
+        <th >Fono</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @providers.each do |provider| %>
+        <%= render "row", provider: provider %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%= link_to 'Home', root_path, :class => 'btn btn-primary' %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#tabla-datos").dataTable({
+      "lengthChange": false,
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+      },
+      "pageLength": 5
+    });
+  });
+</script>

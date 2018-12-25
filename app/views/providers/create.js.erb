@@ -1,0 +1,9 @@
+<% if @provider.errors.empty? %>
+  // add the row to the table, show alert and hide modal
+  $('table tbody').append(' <%= j render "row", provider: @provider %>');
+  $('.alert-success').html("El proveedor ha sido creado con éxito").show();
+  $('provider-modal').modal('hide');
+<% else %>
+  // show first error
+  alert('<%= @provider.errors.full_messages[0] %>');
+<% end %>

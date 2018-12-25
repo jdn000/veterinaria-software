@@ -1,55 +1,60 @@
 
+<div id="provider-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><%= title %></h4>
+      </div>
+      <%= form_for @provider, html: {class: "form-horizontal"}, remote: true  do |f|%>
+        <div class="modal-body">
+          <div class="form-group">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          </div>
+          <div class="form-group">
+          <%= f.label :nombre_proveedor, 'Nombre', class: 'control-label col-sm-3'%>
+            <%= f.text_field :nombre_proveedor, class: "form-control input-lg", placeholder: "Nombre del proveedor" %>
+          </div>
 
-<%= form_for @provider do |f| %>
-  <% if @provider.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@provider.errors.count, "error") %>
-        prohibited this provider from being saved:
-      </h2>
-      <ul>
-        <% @provider.errors.full_messages.each do |msg| %>
-            <li>
-              <%= msg %>
-            </li>
-        <% end %>
-      </ul>
+          <div class="form-group">
+          <%= f.label :rut_proveedor, 'rut', class: 'control-label col-sm-3'%>
+            <%= f.text_field :rut, class: "form-control input-lg", placeholder: "Rut" %>
+          </div>
+
+          <div class="form-group">
+          <%= f.label :razon_social, 'razon_social', class: 'control-label col-sm-3'%>
+            <%= f.text_field :razon_social, class: "form-control input-lg", placeholder: "Razon social" %>
+          </div>
+
+          <div class="form-group">
+          <%= f.label :direccion, 'direccion', class: 'control-label col-sm-3'%>
+            <%= f.text_field :direccion, class: "form-control input-lg", placeholder: "Direccion" %>
+          </div>
+
+          <div class="form-group">
+          <%= f.label :email, 'email', class: 'control-label col-sm-3'%>
+            <%= f.text_field :email, class: "form-control input-lg", placeholder: "Email" %>
+          </div>
+          <div class="form-group">
+          <%= f.label :giro, 'giro', class: 'control-label col-sm-3'%>
+            <%= f.text_field :giro, class: "form-control input-lg", placeholder: "Giro" %>
+          </div>
+
+          <div class="form-group">
+          <%= f.label :fono, 'fono', class: 'control-label col-sm-3'%>
+            <%= f.telephone_field :fono, class: "form-control input-lg", placeholder: "Fono" %>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <%= f.submit class: "btn btn-primary btn-lg btn-block" , value: "Guardar" %>
+        </div>
+      <% end %>
     </div>
-  <% end %> 
-
-  
-  <p>
-    <%= f.label :nombre_proveedor %><br>
-    <%= f.text_field :nombre_proveedor %>
-  </p>
- 
-  <p>
-    <%= f.label :rut_proveedor %><br>
-    <%= f.text_field :rut %>
-  </p>
-  <p>
-    <%= f.label :razon_social %><br>
-    <%= f.text_field :razon_social %>
-  </p>
-  <p>
-    <%= f.label :direccion %><br>
-    <%= f.text_field :direccion %>
-  </p>
-  <p>
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :giro %><br>
-    <%= f.text_field :giro %>
-  </p>
-  <p>
-    <%= f.label :fono %><br>
-    <%= f.telephone_field :fono %>
-  </p>
- 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+  </div>
+</div>
 

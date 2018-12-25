@@ -1,5 +1,5 @@
 
-class Provider < ApplicationRecord	
+class Provider < ApplicationRecord  
 
   include RunCl::ActAsRun
   validates  :rut, presence: true, uniqueness: true
@@ -8,8 +8,8 @@ class Provider < ApplicationRecord
   before_save :minimizando_entradas
 
 
-	has_many :products
-	validates_associated :products
+  has_many :products
+  validates_associated :products
 
   VALID_NAME_REGEX = /(?=^.{2,50}$)[a-zA-ZñÑáéíóúÁÉÍÓÚ]+(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]+)?/
   
@@ -19,9 +19,9 @@ class Provider < ApplicationRecord
   validates :giro, length: { in: 2..50 , :message => " El giro tiene que estar entre 2 a 50 caracteres"}, format: { with: VALID_NAME_REGEX , :message => "El giro no tiene formato valido"}, presence: { message: "no puede estar en blanco" }
   
   VALID_EMAIL_REGEX = /[a-z0-9]+[_a-z0-9.-][a-z0-9]+@[a-z0-9-]+(.[a-z0-9-]+)(.[a-z]{2,4})/
-  validates :email, format: { with: VALID_EMAIL_REGEX , message: "es invalido" }, confirmation: { case_sensitive: false }, uniqueness: { message: "Ya existe" }, length: { in: 7..254 , :message => " El correo debe estar los 7 a 254 caracteres"}, presence: { message: "no puede estar en blanco" }, uniqueness: true
+  validates :email, confirmation: { case_sensitive: false }, uniqueness: { message: "Ya existe" }, length: { in: 7..254 , :message => " El correo debe estar los 7 a 254 caracteres"}, presence: { message: "no puede estar en blanco" }, uniqueness: true
   
-  validates :fono ,presence:true,length: { in: 2..50 }, uniqueness: true
+  validates :fono ,presence:true,length: { in: 2..50 }
 
   private
   def minimizando_entradas
