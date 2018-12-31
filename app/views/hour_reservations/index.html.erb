@@ -1,0 +1,44 @@
+
+<%if current_user.role== 'cliente'%>
+<h1>Reservas asociadas a sus mascotas</h1>
+	<%if !(@horas_cliente.empty?)%>
+		<table>
+		  <tr>
+		    <th>Nombre  </th>
+		    <th>Hora </th>
+		    <th>Dia </th>
+		    <th>Especialidad </th>
+		    <th></th>
+		  </tr>		 
+		<%@horas_cliente.each do |hora|%>
+		  <tr>  
+		      <td><%= hora.pet.nombre.capitalize %></td>
+		      <td><%=hora.hora_reserva.strftime "%H:%M"%></td>
+		      <td><%=hora.fecha_reserva.strftime "%d/%m"%></td>      
+		      <td><%=hora.especialidad%></td>
+		      <td></td>
+		  </tr>
+		<% end %>
+				<%= render 'btn'%>
+		</table>
+		<%else%>
+		<h3>No existen horas asociadas</h3>
+		<%= link_to "Volver", :back, class: "btn btn-primary" %> <%= render 'btn'%>
+		<%end%>
+
+
+<%elsif current_user.role== 'veterinario'|| current_user.role== 'peluquero'%>
+<h5>estas son sus horas para la semana</h5>
+<h5>tabla horas</h5>
+<%elsif current_user.role == 'trabajador'%>
+<h5>estas son las horas para hoy</h5>
+<h5>tabla horas veterinaria y peluquero para hoy</h5>
+<h5>nueva hora - borrar hora</h5>
+<%end%>
+  
+
+
+
+
+
+

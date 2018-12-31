@@ -1,0 +1,58 @@
+       <%if @fechas.empty?%>
+		        <% if @dia.fecha_reserva.sunday? %> 
+		        	es domingo
+		        <%elsif !(Holidays.on(@dia.fecha_reserva,:cl).empty?)%>   
+		        	es feriado
+		 		<%else%>
+			       	<%@a=Time.at(946720800)%>
+			       	<table>
+					  <tr>
+					    <th>Hora</th>
+					    <th>Veterinario  </th>
+					    <th>peluquero </th>
+					  </tr>
+						<%while @a.utc.to_i != 946756800 do %>
+					  <tr>  
+					     	 <td><%=@a.strftime "%H:%M:"%></td>
+					      	 <td><%= link_to "Seleccionar", new_hour_reservation_path(:fecha => @dia.fecha_reserva,:hora => @a.to_i, :especialidad=>'veterinario')%></td>
+					      	 <td><%= link_to "Seleccionar", new_hour_reservation_path(:fecha => @dia.fecha_reserva,:hora => @a.to_i,:especialidad=>'peluquero')%></td>
+					         <%@a+=20.minutes%>
+					  </tr>
+					  <%end%>
+					</table>		  
+		       <%end%> 
+
+       <%else%>
+		       <%@fechas.order(:asc)%>
+				<%@a=Time.at(946720800)%>
+				<table>
+				  <tr>
+				    <th>Hora</th>
+				    <th>Veterinario  </th>
+				    <th>peluquero </th>
+
+				  </tr>
+				 
+				<% while @a.utc.to_i != 946756800 do %>
+				    <% @fechas.each do |f|%>
+				      <tr> 
+				       <td><%=@a.strftime "%H:%M:"%></td>
+				        <%if f.hora_reserva.to_i == @a.to_i && f.especialidad == 'veterinario'%>
+				           <td> <h5>No disponible</h5>   </td>   
+				        <%else %>
+				               <td><%= link_to "veterinario", new_hour_reservation_path(:fecha => @fechas.first.fecha_reserva,:hora => @a.to_i, :especialidad=>'veterinario')%></td>
+				        <%end%>
+				        <%if f.hora_reserva.to_i == @a.to_i && f.especialidad == 'peluquero'%>
+				              <td><h5>hora no disponible</h5></td>
+				        <%else%>
+				              <td><%= link_to "peluquero", new_hour_reservation_path(:fecha => @fechas.first.fecha_reserva,:hora => @a.to_i, :especialidad=>'peluquero')%></td>
+				        <%end%>
+				    </tr>
+				    <%@a+=20.minutes%>
+				    <%end%>
+				    
+				<% end %>
+				</table>
+		<%end%>
+
+

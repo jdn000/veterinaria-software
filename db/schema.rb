@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_25_163648) do
+ActiveRecord::Schema.define(version: 2018_12_31_134754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,23 @@ ActiveRecord::Schema.define(version: 2018_12_25_163648) do
     t.integer "user_id"
   end
 
+  create_table "horarios", force: :cascade do |t|
+    t.time "entrada"
+    t.time "salida"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
   create_table "hour_reservations", force: :cascade do |t|
     t.date "fecha_reserva"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "pet_id"
+    t.time "hora_reserva"
+    t.boolean "reservada", default: false, null: false
+    t.string "especialidad"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -90,6 +101,7 @@ ActiveRecord::Schema.define(version: 2018_12_25_163648) do
   add_foreign_key "attentions", "hour_reservations", column: "hour_id"
   add_foreign_key "attentions", "pets"
   add_foreign_key "attentions", "users"
+  add_foreign_key "horarios", "users"
   add_foreign_key "hour_reservations", "pets"
   add_foreign_key "hour_reservations", "users"
   add_foreign_key "pets", "users"

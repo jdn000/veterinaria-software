@@ -1,4 +1,4 @@
-<h2>Editar información de: <%= current_devise_user.nombre %> <%=current_devise_user.ap_pat%></h2>
+<h2>Editar información de: <%= current_user.nombre %> <%=current_user.ap_pat%></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>

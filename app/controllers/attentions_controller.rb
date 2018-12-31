@@ -1,7 +1,6 @@
 class AttentionsController < ApplicationController
   before_action :set_attention, only: [:show,:destroy,:edit,:update]
   before_action :authenticate_user!
-
   def new
     @attention = Attention.new
   end
@@ -11,8 +10,6 @@ class AttentionsController < ApplicationController
 
   def show
   end
-
-
 
   def create
     @attention = Attention.create(attention_params)

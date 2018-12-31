@@ -1,6 +1,0 @@
-class HourReservationController < ApplicationController
-
-
-
-end
-

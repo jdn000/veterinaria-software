@@ -1,0 +1,13 @@
+
+  <button class="btn btn-primary"  data-toggle="collapse" data-target="#new_appointment">Nueva hora</button>
+<%=link_to 'Nueva mascota',new_user_pet_path(current_user.id),:class=>"btn btn-primary " %>
+  <div id="new_appointment" class="collapse">
+	<h1>Seleccione fecha</h1>
+	<%=form_tag(select_time_path,method: :get) do%>
+	<%=date_field :fecha, params[:fecha],default: Date.tomorrow, min: Date.tomorrow, max: Date.tomorrow+1.months, class: "form-control"%>
+	<%= submit_tag ("Seleccionar")%>
+	<%end%>
+</div>
+
+
+

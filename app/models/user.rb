@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
- has_many :hour_reservation
+ has_many :hour_reservations
+ has_many :pets,through: :hour_reservations
  has_many :pet
 
   include RunCl::ActAsRun

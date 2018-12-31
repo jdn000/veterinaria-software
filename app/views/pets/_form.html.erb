@@ -1,5 +1,5 @@
 
-<h1><%=@user.nombre.capitalize%>  <%=@user.ap_pat.capitalize%>  <%=@user.ap_mat.capitalize%></h1>
+<h1>Cliente: <%=@user.nombre.capitalize%>  <%=@user.ap_pat.capitalize%>  <%=@user.ap_mat.capitalize%></h1>
 <%= form_for [@user,@pet]  do |f| %>
   <p>
     <%= f.label :nombre_mascota %><br>

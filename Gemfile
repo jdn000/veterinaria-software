@@ -4,10 +4,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '<=2.5.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'holidays'
 gem 'rails', '~> 5.2.1'
 gem 'jquery-ui-rails'
 gem 'run_cl'
-
+gem "simple_calendar", "~> 2.0"
 gem 'exception_handler', '~> 0.8.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
