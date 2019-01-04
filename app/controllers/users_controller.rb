@@ -14,9 +14,10 @@ class UsersController < ApplicationController
 	def create
 	    @user = User.new(usuario_params)
 
-	  	  respond_to do |format|
-		  format.html {redirect_to users_path}
-		  format.js
+	  	  if @user.save
+		  	redirect_to new_horario_path(:id=>@user.id)
+		  else
+		  	render 'new'
 		  end
 
 	end

@@ -1,0 +1,36 @@
+<%if @especialistas.empty? == false%>
+			<table>
+			  <tr>
+			    <th>Nombre  </th>
+			    <th>Rol </th>
+			    <th>Horario</th>
+			    <th>Editar horario </th>
+			    
+			  </tr>	
+			<% @especialistas.each do |especialista|%>
+				<%if especialista.role== 'veterinario'||especialista.role== 'peluquero' ||especialista.role== 'trabajador'%>
+
+				<tr>
+					<td><strong><%=especialista.nombre.capitalize%> <%=especialista.ap_pat.capitalize%> <%=especialista.ap_mat.capitalize%></strong></td>
+					<td><%=especialista.role.capitalize%></td>
+					<%if especialista.horario.nil?%>
+						<td>Sin horario asignado</td>
+						<td><%=link_to "Crear horario", new_horario_path(:id=> especialista),class: "btn btn-primary"%></td>
+					<%else%>
+						<td><%=especialista.horario.entrada.utc.strftime "%H:%M"%>-<%=especialista.horario.salida.strftime "%H:%M"%></td>
+						<td><%=link_to "editar", edit_horario_path(especialista.horario),class: "btn btn-primary"%></td>
+					<%end%>
+				
+				</tr>
+
+				<%end%>
+			<%end%>	
+			</table>				
+<%else%>
+<h1>No existen especialistas inscritos</h1>
+
+<%end%>	
+<div>
+<%= link_to 'Nuevo usuario', new_user_path,remote: true, class: "btn btn-primary btn-sm" %>	
+</div>
+	 

@@ -1,0 +1,13 @@
+<h1>Horario para <%=@user.nombre.capitalize+' '+@user.ap_pat.capitalize+' '+ @user.ap_mat.capitalize%> </h1>
+
+<%= form_for @horario  do |f| %>
+
+    <div><%= f.label :Hora_entrada %></div>
+    <div><%= f.time_select :entrada , start_hour: 10, end_hour: 20, minute_step: 30%></div>
+	<%= f.hidden_field(:user_id, :value=> @user.id) %>   
+   <div> <%= f.label :Hora_salida %></div>
+    <div><%= f.time_select :salida , start_hour: 10, end_hour: 20, minute_step: 30%> </div>
+
+	<%= f.submit "Inscribir horario",class: "btn btn-primary" %>
+<% end %>
+

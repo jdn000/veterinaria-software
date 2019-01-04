@@ -1,27 +1,57 @@
 class HourReservationsController < ApplicationController
 def index
 	@hour_reservations=HourReservation.all
-	@horas_cliente=Array.new
-	@hour_reservations.each do |hour|
-		if hour.pet.user.id == current_user.id
-			@horas_cliente.push(hour)
+	
+	if current_user.role == 'veterinario' || current_user.role == 'peluquero'
+		@horas_especialista=Array.new
+	 	current_user.hour_reservations.each do |n|
+	 		if n.fecha_reserva == Date.today
+	 			@horas_especialista.push(n)
+	 		end
+		
 		end
-	end	
-end
+		@horas_especialista.sort_by{ |t| t.fecha_reserva.day } 	
+
+	elsif current_user.role == 'cliente'
+		@horas_cliente=Array.new
+	    @hour_reservations.each do |hour|
+			if hour.pet.user.id == current_user.id
+				@horas_cliente.push(hour)
+			end
+		end	
+	elsif current_user.role == 'trabajador'
+		@horas_dia=Array.new
+	    @hour_reservations.each do |dia|
+	    	if Date.today.sunday? || Holidays.on(Date.today,:cl).empty? == false
+	    		flash[:error]="Hoy no se atiende"
+	    	else
+	    		if dia.fecha_reserva == Date.today
+					@horas_dia.push(dia)
+				end	
+	    	end			
+		end
+		@horas_dia.sort_by{ |t| t.fecha_reserva.day }
+	end		
+end				
+
 def new
 
 	@fecha=params[:fecha].to_date
 	@hora=Time.at(params[:hora].to_i)
-	@especialidad=params[:especialidad]
-	@veterinario=User.where(role: 'veterinario').first
+	@especialidad=params[:especialidad].downcase
+	@especialistas=User.where(role: @especialidad)
+	@esp_disp=Array.new
+	@especialistas.each do |especialista|
+		if @hora.between?( especialista.horario.entrada , especialista.horario.salida )
+				@esp_disp.push( especialista )
+		end
+	end
 	@pets=Pet.where(user_id: current_user.id).all
 	@hour_reservation=HourReservation.new
 
 end
+
 def create
-	@pet=Pet.where(id: params[:pet_id]).first
-	@veterinario=User.where(role: 'veterinario').first
-	@especialidad=params[:especialidad]	
 	@hour_reservation=HourReservation.new(hour_params)
 	@hour_reservations=HourReservation.all
 	@count_hour=Array.new
@@ -45,7 +75,7 @@ def create
     if @count_hour.count >2
     	flash[:error]= "Excede maximo de horas"
     	redirect_to hour_reservations_path(current_user)
-    elsif @count_times.count>1
+    elsif @count_times.count>0
      	flash[:error]= "Excede maximo horas por especialidad"
     	redirect_to hour_reservations_path(current_user)
     elsif @count_pairing.count>0
@@ -57,7 +87,7 @@ def create
 	        redirect_to hour_reservations_path
       	else
       		flash[:error] = "Error en el ingreso "  
-     		 render 'dateconfirm'
+     		 redirect_to hour_reservations_path
      	 end
     end
 
@@ -87,14 +117,13 @@ def datesearch
 		end
 	end
  
-
 end
-
-def edit
-end
-def update
-end
-def delete
+	
+def destroy
+	@hour_reservation=HourReservation.find(params[:id])
+	@hour_reservation.destroy
+	flash[:success]='Hora eliminada exitosamente'
+    redirect_to hour_reservations_path
 end
 private
 

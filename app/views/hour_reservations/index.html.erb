@@ -2,38 +2,96 @@
 <%if current_user.role== 'cliente'%>
 <h1>Reservas asociadas a sus mascotas</h1>
 	<%if !(@horas_cliente.empty?)%>
-		<table>
-		  <tr>
-		    <th>Nombre  </th>
-		    <th>Hora </th>
-		    <th>Dia </th>
-		    <th>Especialidad </th>
-		    <th></th>
-		  </tr>		 
-		<%@horas_cliente.each do |hora|%>
-		  <tr>  
-		      <td><%= hora.pet.nombre.capitalize %></td>
-		      <td><%=hora.hora_reserva.strftime "%H:%M"%></td>
-		      <td><%=hora.fecha_reserva.strftime "%d/%m"%></td>      
-		      <td><%=hora.especialidad%></td>
-		      <td></td>
-		  </tr>
-		<% end %>
+			<table>
+			  <tr>
+			    <th>Nombre  </th>
+			    <th>Hora </th>
+			    <th>Dia </th>
+			    <th>Especialidad </th>
+			    <th>Nombre especialista</th>
+			    <th></th>
+			  </tr>		 
+			<%@horas_cliente.each do |hora|%>
+			  <tr>  
+			      <td><%= hora.pet.nombre.capitalize %></td>
+			      <td><%=hora.hora_reserva.strftime "%H:%M"%></td>
+			      <td><%=hora.fecha_reserva.strftime "%d/%m"%></td>      
+			      <td><%=hora.especialidad%></td>
+			      <td><%=hora.user.nombre%> <%=hora.user.ap_pat%> <%=hora.user.ap_mat%></td>
+			      <td><%= link_to 'Eliminar hora',hour_reservation_path(hora),method: :delete, 
+                         data: { confirm: 'Está seguro?' } %> </td>
+			  </tr>
+			<% end %>
 				<%= render 'btn'%>
-		</table>
-		<%else%>
-		<h3>No existen horas asociadas</h3>
-		<%= link_to "Volver", :back, class: "btn btn-primary" %> <%= render 'btn'%>
-		<%end%>
-
+			</table>
+			<%else%>
+			<h3>No existen horas asociadas</h3>
+			<%= link_to "Volver", :back, class: "btn btn-primary" %> <%= render 'btn'%>
+	<%end%>
 
 <%elsif current_user.role== 'veterinario'|| current_user.role== 'peluquero'%>
-<h5>estas son sus horas para la semana</h5>
-<h5>tabla horas</h5>
+	<h1>Estas son sus horas para hoy <%=Date.today.strftime "%d/%m"%> </h1>
+	<%if !(@horas_especialista.empty?)%>
+			<table>
+			  <tr>
+			    <th>Nombre cliente </th>
+			    <th>Mascota </th>
+			    <th>Hora</th>
+			    <th>DÍa  </th>
+			    <th></th>
+			  </tr>		 
+			<%@horas_especialista.each do |especialista|%>
+			  <tr>  
+			      <td><%= especialista.pet.user.nombre.capitalize %> <%= especialista.pet.user.ap_pat.capitalize %> <%= especialista.pet.user.ap_mat.capitalize %></td>
+			      <td><%=especialista.pet.nombre%></td>
+			      <td><%=especialista.hora_reserva.strftime "%H:%M"%></td>
+			      <td><%=especialista.fecha_reserva.strftime "%d/%m"%></td>      	      
+			      <td></td>
+			  </tr>
+			<% end %>
+			</table>
+	<%else%>
+			<h3>No existen horas reservadas para hoy</h3>
+	<%end%>
+
 <%elsif current_user.role == 'trabajador'%>
-<h5>estas son las horas para hoy</h5>
-<h5>tabla horas veterinaria y peluquero para hoy</h5>
-<h5>nueva hora - borrar hora</h5>
+	<h1>Horas agendadas para hoy <%=Date.today.strftime "%d/%m"%></h1>
+	<%if !(@horas_dia.empty?)%>       
+				<%@a=Time.at(946720800)%>
+				<table>
+				  <tr>
+				    <th>Hora</th>
+				    <th>Veterinario  </th>
+				    <th>peluquero </th>
+
+				  </tr>
+				 
+				<% while @a.utc.to_i != 946756800 do %>
+				    <% @horas_dia.each do |f|%>
+				      <tr> 
+				       <td><%=@a.strftime "%H:%M:"%></td>
+				        <%if f.hora_reserva.to_i == @a.to_i && f.especialidad == 'veterinario'%>
+		                   <td> <%=f.pet.user.nombre.capitalize%> <%=f.pet.user.ap_pat.capitalize%> <%=f.pet.user.ap_mat.capitalize%>  </td>    
+				        <%else %>
+				           <td><h5>Libre</h5></td>
+				        <%end%>
+				        <%if f.hora_reserva.to_i == @a.to_i && f.especialidad == 'peluquero'%>
+				              <td> <%=f.pet.user.nombre.capitalize%> <%=f.pet.user.ap_pat.capitalize%> <%=f.pet.user.ap_mat.capitalize%>  </td>
+				        <%else%>
+				              <td><h5>Libre</h5></td>
+				        <%end%>
+				    </tr>
+				    <%@a+=20.minutes%>
+				    <%end%>
+				    
+				<% end %>
+				</table>
+					
+
+	<%else%>
+
+	<h1>No existen horas agendadas para hoy</h1>	
+	<%end%>				
 <%end%>
   
 

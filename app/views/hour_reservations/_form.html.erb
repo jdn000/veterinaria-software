@@ -1,13 +1,13 @@
-<h1>Seleccione mascota para <%=@especialidad%> </h1>
+<h1>Seleccione mascota para <%=@especialidad.class%> </h1>
 
 <%= form_for @hour_reservation  do |f| %>
 
 	<p><%= f.select :pet_id, @pets.map { |c| [c.nombre, c.id] }, {:prompt => "Seleccione su mascota"}  %></p>
-
+	<p><%= f.select :user_id, @esp_disp.map { |c| [c.nombre+' '+c.ap_pat+' '+c.ap_mat, c.id] }, {:prompt => "Seleccione especialista"}  %></p>
   	<%= f.hidden_field(:especialidad, :value=> @especialidad) %>     
   	<%= f.hidden_field(:hora_reserva, :value=> @hora) %> 
   	<%= f.hidden_field(:fecha_reserva, :value=> @fecha) %>   	   
   	<%= f.hidden_field(:reservada, :value=> true) %>
-  	<%= f.hidden_field(:user_id, :value=> @veterinario.id) %>
+
     <%= f.submit "Tomar hora",class: "btn btn-primary" %>
 <% end %>
