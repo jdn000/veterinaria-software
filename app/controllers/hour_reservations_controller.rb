@@ -128,7 +128,7 @@ end
 private
 
 def hour_params
-	params.require(:hour_reservation).permit(:fecha_reserva,:hora_reserva,:reservada,:user_id,:pet_id,:especialidad)
+	params.require(:hour_reservation).permit(:fecha_reserva,:hora_reserva,:user_id,:pet_id,:especialidad)
 end
 
 
