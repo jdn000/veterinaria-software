@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
  before_action :allow_without_password, only: [:update]	
-#before_action :require_certain_role
+ before_action :require_certain_role
 	def index
      @users=User.where.not(role: "admin")
 	end

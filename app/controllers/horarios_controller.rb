@@ -1,5 +1,5 @@
 class HorariosController < ApplicationController
-
+ before_action :require_certain_role
   def index
     @especialistas=User.all
     @horarios = Horario.all
@@ -61,8 +61,11 @@ def new
   def horario_params
     params.require(:horario).permit(:entrada,:salida, :user_id)
   end
+def require_certain_role
+      if current_user.role=='cliente' || current_user.role=='veterinario'||current_user.role=='peluquero' 
+        flash[:error]="No esta autorizado para acceder a esta pagina"
+        redirect_to root_path
 
-  def set_Horario
-    @horario = Horario.find(params[:id])
-  end
+      end     
+ end
 end
