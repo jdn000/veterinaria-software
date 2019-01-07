@@ -1,35 +1,52 @@
-<h1>Historial medico</h1>
-<div class="head_content">
-  <div class="col-md-10 col-sm-12">
-    
-  </div>
 
-</div>
+<%if current_user.role== 'veterinario'%>
+<h4>Bienvenido  <%= current_user.role %>  </h4>
 
-<div class="contenedor">
-  <div class="contenedor">
-    <% if @attentions.length > 0 %>
-      <% @attentions.each do |attention| %>
-        <%= render "row", attention: attention %>
-      <% end %>
+<h1>Reservas asociadas su cargo </h1>
+  <%if !(@fichas.empty?)%>
+    <table>
+      <tr>
+        <th>Tipo de atencion  </th>
+        <th>Mascota </th>
+        <th>Dueño </th>
+        <th>Fecha de atencion </th>
+        <th>Hora reserva </th>
+        <th></th>
+      </tr>    
+    <% @fichas.each do |ficha|%>
+      <tr>  
+          <td><%= ficha.especialidad.capitalize %></td>
+          <td><%= ficha.pet.nombre %></td>
+          <td><%= ficha.pet.user.nombre %></td>
+          <td><%= ficha.fecha_reserva.strftime "%d/%m"%></td> 
+          <td><%= ficha.hora_reserva.strftime "%H:%M"%></td>
+          <td><%= ficha.id %></td>
+
+                        <td><%= link_to "Agregar ficha", nueva_ficha_path(ficha.id)%></td> 
+
+          <% @attentions.each do |attention|%>
+                    
+
+                    <tr>
+                      <% if attention.hour_id == ficha.id %>
+                          <th>Ficha Existente  </th>
+                          <td><%= attention.tipo_atencion %></td>
+                          <td><%= attention.descripcion %></td>
+                          
+                          <td><%= link_to 'Show', attention %></td>
+                          <td><%= link_to 'Edit', edit_attention_path(attention) %></td>
+                          <td><%= link_to 'Destroy', attention, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                    <% end %>
+    </tr>
+          <% end %>
     <% end %>
-  </div>
-</div>
+    </table>
+    <%else%>
 
 
- <div class="col-sm-1">
-    <%= link_to 'Home', root_path, :class => 'btn btn-primary' %>
-  </div>
+    <%end%>
+<%end%>
 
 
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("#tabla-datos").dataTable({
-      "lengthChange": false,
-      "language": {
-        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-      },
-      "pageLength": 5
-    });
-  });
-</script>
+

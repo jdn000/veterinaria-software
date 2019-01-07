@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :products
   resources :attentions
   resources :hour_reservations
+  get '/attentions/new/:id' , to: 'attentions#new' , as: 'nueva_ficha'
   #resources :users do
    # resources :horarios
  # end

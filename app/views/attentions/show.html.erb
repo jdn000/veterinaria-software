@@ -1,0 +1,28 @@
+
+<p>
+  <strong>Tipo atencion :</strong>
+  <%= @attention.tipo_atencion %>
+</p>
+<p>
+  <strong>Nombre mascota :</strong>
+  <%= @attention.hour_reservation.pet.nombre %>
+</p>
+<p>
+  <strong>Nombre Dueño :</strong>
+  <%= @attention.hour_reservation.pet.user.nombre %>
+</p>
+<p>
+  <strong>Fecha :</strong>
+  <%= @attention.hour_reservation.fecha_reserva %>
+</p>
+<p>
+  <strong>Hora :</strong>
+  <%= @attention.hour_reservation.hora_reserva %>
+</p>
+<p>
+  <strong>Descripcion :</strong>
+  <%= @attention.descripcion %>
+</p>
+
+
+<%= link_to 'Volver', attentions_path %>

@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2019_01_03_152431) do
     t.integer "hour_id"
     t.integer "pet_id"
     t.integer "user_id"
+    t.integer "admin_id"
   end
 
   create_table "horarios", force: :cascade do |t|
@@ -39,7 +40,6 @@ ActiveRecord::Schema.define(version: 2019_01_03_152431) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "pet_id"
-    t.boolean "reservada", default: false, null: false
     t.string "especialidad"
     t.time "hora_reserva"
   end

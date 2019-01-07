@@ -4,6 +4,7 @@ class User < ApplicationRecord
  has_many :hour_reservations
  has_many :pets,through: :hour_reservations
  has_many :pet
+ has_many :pets ,through: :attentions
  has_one :horario
 
   include RunCl::ActAsRun
