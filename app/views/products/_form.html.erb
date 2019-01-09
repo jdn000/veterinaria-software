@@ -37,7 +37,7 @@
 
           <div class="form-group">
             <%= f.label :caducidad, "Caducidad", class: 'control-label col-sm-3' %>
-            <%= f.date_field :caducidad %>
+  <%=date_field :caducidad, params[:caducidad],default: Date.tomorrow, min: Date.tomorrow, max: Date.tomorrow+1.year, class: "form-control"%>
           </div>
 
 
