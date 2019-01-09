@@ -49,7 +49,7 @@ private
     end
 
 	  def require_certain_role
-	  	if current_user.role=='cliente' || current_user.role=='veterinario'||current_user.role=='peluquero' 
+	  	if current_user.role=='cliente' || current_user.role=='veterinario'||current_user.role=='peluquero'||current_user.role=='Cliente' || current_user.role=='Veterinario'||current_user.role=='Peluquero' 
 	  		flash[:error]="No esta autorizado para acceder a esta pagina"
 	  		redirect_to root_path
 

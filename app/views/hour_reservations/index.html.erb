@@ -1,5 +1,5 @@
 
-<%if current_user.role== 'cliente'%>
+<%if current_user.role== 'cliente'||current_user.role== 'Cliente'%>
 <h1>Reservas asociadas a sus mascotas</h1>
 	<%if !(@horas_cliente.empty?)%>
 			<table class="table table-sm  table-bordered table-hover">
@@ -30,7 +30,7 @@
 			<%= link_to "Volver", :back, class: "btn btn-primary" %> <%= render 'btn'%>
 	<%end%>
 
-<%elsif current_user.role== 'veterinario'|| current_user.role== 'peluquero'%>
+<%elsif current_user.role== 'veterinario'|| current_user.role== 'peluquero'||current_user.role== 'Veterinario'|| current_user.role== 'Peluquero'%>
 	<h1>Estas son sus horas para hoy <%=Date.today.strftime "%d/%m"%> </h1>
 	<%if !(@horas_especialista.empty?)%>
 			<table>
@@ -55,7 +55,7 @@
 			<h3>No existen horas reservadas para hoy</h3>
 	<%end%>
 
-<%elsif current_user.role == 'trabajador'|| current_user.role == 'admin'%>
+<%elsif current_user.role == 'trabajador'|| current_user.role == 'admin'||current_user.role == 'Trabajador'|| current_user.role == 'Admin'%>
 	<h1>Horas agendadas para hoy <%=Date.today.strftime "%d/%m"%></h1>
 	<%if !(@horas_dia.empty?)%>       
 				<%@a=Time.at(946720800)%>
@@ -71,12 +71,12 @@
 				    <% @horas_dia.each do |f|%>
 				      <tr> 
 				       <td><%=@a.strftime "%H:%M:"%></td>
-				        <%if f.hora_reserva.to_i == @a.to_i && f.especialidad == 'veterinario'%>
+				        <%if f.hora_reserva.to_i == @a.to_i && f.especialidad == 'Veterinario'||f.hora_reserva.to_i == @a.to_i && f.especialidad == 'veterinario'%>
 		                   <td> <%=f.pet.user.nombre.capitalize%> <%=f.pet.user.ap_pat.capitalize%> <%=f.pet.user.ap_mat.capitalize%>  </td>    
 				        <%else %>
 				           <td><h5>Libre</h5></td>
 				        <%end%>
-				        <%if f.hora_reserva.to_i == @a.to_i && f.especialidad == 'peluquero'%>
+				        <%if f.hora_reserva.to_i == @a.to_i && f.especialidad == 'Peluquero'||f.hora_reserva.to_i == @a.to_i && f.especialidad == 'peluquero'%>
 				              <td> <%=f.pet.user.nombre.capitalize%> <%=f.pet.user.ap_pat.capitalize%> <%=f.pet.user.ap_mat.capitalize%>  </td>
 				        <%else%>
 				              <td><h5>Libre</h5></td>

@@ -2,7 +2,7 @@ class HourReservationsController < ApplicationController
 def index
 	@hour_reservations=HourReservation.all
 	
-	if current_user.role == 'veterinario' || current_user.role == 'peluquero'
+	if current_user.role == 'veterinario' || current_user.role == 'Peluquero'||current_user.role == 'Veterinario' || current_user.role == 'Peluquero'
 		@horas_especialista=Array.new
 	 	current_user.hour_reservations.each do |n|
 	 		if n.fecha_reserva == Date.today
@@ -12,14 +12,14 @@ def index
 		end
 		@horas_especialista.sort_by{ |t| t.fecha_reserva.day } 	
 
-	elsif current_user.role == 'cliente'
+	elsif current_user.role == 'cliente'||current_user.role == 'Cliente'
 		@horas_cliente=Array.new
 	    @hour_reservations.each do |hour|
 			if hour.pet.user.id == current_user.id
 				@horas_cliente.push(hour)
 			end
 		end	
-	elsif current_user.role == 'trabajador' ||current_user.role == 'admin'
+	elsif current_user.role == 'trabajador' ||current_user.role == 'admin'||current_user.role == 'Trabajador' ||current_user.role == 'Admin'
 		@horas_dia=Array.new
 	    @hour_reservations.each do |dia|
 	    	if Date.today.sunday? || Holidays.on(Date.today,:cl).empty? == false
