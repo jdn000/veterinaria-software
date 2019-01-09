@@ -1,5 +1,5 @@
 
-<%if current_user.role== 'veterinario'%>
+<%if current_user.role== 'veterinario'||current_user.role== 'Veterinario'%>
   <h4>Bienvenido  <%= current_user.role %>  </h4>
   <h1>Reservas asociadas su cargo </h1>
     <%if !(@fichas.empty?)%>
