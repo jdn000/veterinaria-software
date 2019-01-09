@@ -19,7 +19,7 @@ def index
 				@horas_cliente.push(hour)
 			end
 		end	
-	elsif current_user.role == 'trabajador'
+	elsif current_user.role == 'trabajador' ||current_user.role == 'admin'
 		@horas_dia=Array.new
 	    @hour_reservations.each do |dia|
 	    	if Date.today.sunday? || Holidays.on(Date.today,:cl).empty? == false

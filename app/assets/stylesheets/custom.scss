@@ -3,38 +3,20 @@
  * Copyright 2013-2018 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-landing-page/blob/master/LICENSE)
  */
- @import "bootstrap-sprockets";
+@import "bootstrap-sprockets";
 @import "bootstrap";
-
 @import url(https://fonts.googleapis.com/css?family=Questrial);
 @import url(http://fonts.googleapis.com/css?family=Dancing+Script:700);
-ul.ui-autocomplete {
-  position: absolute;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border: solid 1px #999;
-  cursor: default;
-  li {
-    background-color: #FFF;
-    border-top: solid 1px #DDD;
-    margin: 0;
-    padding: 0;
-    a {
-      color: #000;
-      display: block;
-      padding: 3px;
-    }
-    a.ui-state-hover, a.ui-state-active {
-      background-color: #FFFCB2;
-    }
-  }
-}
+
+
 body {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: #8b80f9;
-    color:black;
+    width: 100%;
+    height: 100%;
+    background-color: #72D29D;                           //color fondo
+    color:#000;
     webkit-tap-highlight-color: #5c2751;
+      
 }
 
 h1{
@@ -51,12 +33,6 @@ h6 {
 }
 
 
-
-html,
-body {
-    width: 100%;
-    height: 100%;
-}
 
 
 hr {
@@ -85,7 +61,7 @@ a:focus {
 p {
     font-size: 17px;
     line-height: 1.7;
-    margin-bottom: 20px;
+
 }
 
 .wide-space {
@@ -97,21 +73,14 @@ p {
     line-height: 18px;
 }
 
-.bg-primary {
-    background-color: #ffcc66;
-}
+
 .bg-prim {
-    background-color: #340068;
+    background-color: #348558; //color navbar
 }
 
 .bg-dark {
     color: #eee;
     background-color: #5c2751;
-}
-
-.cursive {
-    font-family: 'Dancing Script', cursive;
-    text-transform: none;
 }
 
 .text-faded {
@@ -127,7 +96,8 @@ p {
 }
 
 .modal-content {
-    background-color: #1d1d1d;
+    background-color: #0795b2;
+        top: 100px;
 }
 
 section {
@@ -148,40 +118,36 @@ footer {
 
 
 .form-control {
-    display: block;
-     box-sizing: content-box;
-    width: 50%;
-    height: 30%;
+ box-sizing: content-box;
+  width: 45%;
+  padding: 6px 10px;
+  font-size: 14px;
+  background-color: #A4FFCC;
+  color: #6666ff;
+  border: 1px solid #36333d;
+  border-radius: 5px;
+    float: none;
 
-    padding-left:8;
-    padding-right:20;   
-    padding-top: 5;  
-    padding-bottom: 20;        
-    font-size: 14px;
-    line-height: 3;
-    color: #eee;
-    background-color: #340068;
-    background-image: none;
-    border: 1px solid #36333d;
-    border-radius: 5px;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    margin-right: auto;
+    margin-left: auto;
+    position: auto;
+
 }
+
 .select{
  box-sizing: content-box;
   width: 30%;
   padding: 6px 10px;
-
   font-size: 14px;
-  background-color: #340068;
-  color: #eee;
+  background-color: #A4FFCC;
+  color: #6666ff;
   border: 1px solid #36333d;
   border-radius: 5px;
 }
 .form-control:focus {
     color: #222;
     background-color: #ccc;
-    box-shadow: none;
+
 }
 
 textarea {
@@ -221,38 +187,29 @@ textarea {
 
 /*Boton primario*/
 .btn.btn-primary {
-color:white;
-    border:1px solid #f0f0f0;
-    border-color:#0039e6;
+color: #fff;
+
+    border-color:#0c7c59;
+    background-color: #4caf50;
 
 }
 
 .btn.btn-primary:hover {
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 .btn {
+
+    color: #fff;
+    border:0.5px solid #97d8b2;
+    border-color:#258ea6;
+    background-color: #4caf50;
     border: 0;
-    border-radius: 290px;
+    border-radius: 2px;
     font-family: 'Helvetica Neue',Arial,sans-serif;
 }
 
-.btn-xl {
-    padding: 15px 30px;
-    font-size: 20px;
-}
 
-::-moz-selection {
-    text-shadow: none;
-    color: #fff;
-    background: #222;
-}
-
-::selection {
-    text-shadow: none;
-    color: #fff;
-    background: #222;
-}
 
 footer {
   margin-top: 45px;
@@ -286,17 +243,23 @@ footer {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  width: 100%;
+  width: 40%;
   border: 1px solid #ddd;
+
 }
 
 th, td {
-  text-align: left;
-  padding: 8px;
+  text-align: center;
+  padding: 0px;
 }
 
-tr:nth-child(even){background-color: #3366cc}
-tr:nth-child(odd){background-color: #42f480}
+tr:nth-child(even){background-color: #97d8b2} //color tabla pares 
+tr:nth-child(odd){background-color: #97d8b2}//c. impares
+
+
+
+
+
 /*flash*/
 .alert-error {
     background-color: #f2dede;
@@ -339,3 +302,116 @@ tr:nth-child(odd){background-color: #42f480}
     color: $state-danger-text;
   }
 }
+
+
+
+//navbar
+
+
+
+
+.default-header {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9;
+
+}
+
+
+nav {
+
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  transform-origin: 100% 50%;
+  
+}
+
+@media (max-width: 767px) {
+  nav {
+    margin-right: 0;
+    position: absolute;
+    right: 0;
+
+    text-align: right;
+    
+    z-index: 5;
+    background: #fff;
+  }
+  nav a {
+    color: #fff !important;
+  }
+  nav a:hover {
+    color: #fff;
+  }
+}
+
+nav.hide {
+  transform: scale(0);
+}
+
+nav a {
+  color: #000;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0 25px;
+  display: inline-block;
+}
+
+@media (max-width: 767px) {
+  nav a {
+    margin: 5px 25px;
+  }
+}
+
+nav a:hover {
+  color: #2482ff;
+}
+
+.default-header {
+background-color: #348558; //color navbar
+  
+  width: 100% !important;
+  box-shadow: -21.213px 21.213px 30px 0px rgba(158, 158, 158, 0.3);
+}
+
+.lnr {
+  font-family: 'Linearicons-Free';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.lnr-menu:before {
+  content: "\e871";
+}
+.lnr-menu-circle:before {
+  content: "\e87e";
+}
+.lnr-cross:before {
+  content: "\e870";
+}
+.menu-bar {
+  cursor: pointer;
+}
+
+.menu-bar span {
+  color: #000;
+  font-size: 24px;
+}
+
+.main-menubar {
+  position: relative;
+}
+

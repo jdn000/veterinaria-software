@@ -5,7 +5,7 @@
 	<h1>Seleccione fecha</h1>
 	<%=form_tag(select_time_path,method: :get) do%>
 	<%=date_field :fecha, params[:fecha],default: Date.tomorrow, min: Date.tomorrow, max: Date.tomorrow+1.months, class: "form-control"%>
-	<%= submit_tag ("Seleccionar")%>
+	<%= submit_tag ("Seleccionar"),class: "btn btn-primary"%>
 	<%end%>
 </div>
 

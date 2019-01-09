@@ -5,54 +5,84 @@
 		        	es feriado
 		 		<%else%>
 			       	<%@a=Time.at(946720800)%>
-			       	<table>
-					  <tr>
-					    <th>Hora</th>
-					    <th>Veterinario  </th>
-					    <th>peluquero </th>
+			       	<div class="container">
+			       		<div class="col-sm-auto">
+			       	<table class="table table-sm  table-bordered table-hover">
+					  <tr class="bg-success">
+					    <h2><th>Hora</th></h2>
+					   <h2> <th>Veterinario  </th></h2>
+					   <h2> <th>Peluquero </th></h2>
 					  </tr>
 						<%while @a.utc.to_i != 946756800 do %>
 					  <tr>  
-					     	 <td><%=@a.strftime "%H:%M:"%></td>
-					      	 <td><%= link_to "Seleccionar", new_hour_reservation_path(:fecha => @dia.fecha_reserva,:hora => @a.to_i, :especialidad=>'veterinario')%></td>
-					      	 <td><%= link_to "Seleccionar", new_hour_reservation_path(:fecha => @dia.fecha_reserva,:hora => @a.to_i,:especialidad=>'peluquero')%></td>
+					     	 <td><%=@a.strftime "%H:%M"%></td>
+					      	 <td>
+					      	 	<%= link_to  new_hour_reservation_path(:fecha => @dia.fecha_reserva,:hora => @a.to_i, :especialidad=>'veterinario'),class: "btn btn-primary" do%>
+					      	 	    <span class="glyphicon glyphicon-ok-sign"></span>
+    										Hora disponible
+  									<% end %>	
+
+					      	 	</td>
+					      	 <td><%= link_to new_hour_reservation_path(:fecha => @dia.fecha_reserva,:hora => @a.to_i,:especialidad=>'peluquero'),class: "btn btn-primary" do %>
+					      	 	    <span class="glyphicon glyphicon-ok-sign"></span>
+    										Hora disponible
+  									<% end %>								      	 	
+					      	 </td>
+			      	 
 					         <%@a+=20.minutes%>
 					  </tr>
 					  <%end%>
-					</table>		  
+					</table>	
+					</div>	  
+				</div>
 		       <%end%> 
 
        <%else%>
 		       <%@fechas.order(:asc)%>
 				<%@a=Time.at(946720800)%>
-				<table>
-				  <tr>
-				    <th>Hora</th>
-				    <th>Veterinario  </th>
-				    <th>peluquero </th>
+				<div class="container">
+					<div class="col-sm-auto">
+						<table class="table table-sm  table-bordered table-hover">
+							  <tr class="bg-success">
+							    <th>Hora</th>
+							    <th>Veterinario  </th>
+							    <th>Peluquero </th>
 
-				  </tr>
+				  			</tr>
 				 
-				<% while @a.utc.to_i != 946756800 do %>
-				    <% @fechas.each do |f|%>
-				      <tr> 
-				       <td><%=@a.strftime "%H:%M:"%></td>
-				        <%if f.hora_reserva.to_i == @a.to_i && f.especialidad == 'veterinario'%>
-				           <td> <h5>No disponible</h5>   </td>   
-				        <%else %>
-				               <td><%= link_to "veterinario", new_hour_reservation_path(:fecha => @fechas.first.fecha_reserva,:hora => @a.to_i, :especialidad=>'veterinario')%></td>
-				        <%end%>
-				        <%if f.hora_reserva.to_i == @a.to_i && f.especialidad == 'peluquero'%>
-				              <td><h5>hora no disponible</h5></td>
-				        <%else%>
-				              <td><%= link_to "peluquero", new_hour_reservation_path(:fecha => @fechas.first.fecha_reserva,:hora => @a.to_i, :especialidad=>'peluquero')%></td>
-				        <%end%>
-				    </tr>
+							 <% while @a.utc.to_i != 946756800 do %>
+				   			 <% @fechas.each do |f|%>
+				      		<tr> 
+				       			<td><%=@a.strftime "%H:%M"%></td>
+				       		   <%if f.hora_reserva.to_i == @a.to_i && f.especialidad == 'veterinario'%>
+				          	   <td>   
+				          	   		 <span  class="label label-danger">Hora no disponible</span>
+				          	   		
+				          	    </td>   
+				       		   <%else %>
+				               <td><%= link_to  new_hour_reservation_path(:fecha => @fechas.first.fecha_reserva,:hora => @a.to_i, :especialidad=>'veterinario'),class: "btn btn-primary" do%>
+					      	 	    <span class="glyphicon glyphicon-ok-sign"></span>
+    										Hora disponible
+  									<% end %>							               	
+				               </td>
+				      		   <%end%>
+				       		 <%if f.hora_reserva.to_i == @a.to_i && f.especialidad == 'peluquero'%>
+				              <td> <span  class="label label-danger">Hora no disponible</span></td>
+				        		<%else%>
+				              <td><%= link_to  new_hour_reservation_path(:fecha => @fechas.first.fecha_reserva,:hora => @a.to_i, :especialidad=>'peluquero'),class: "btn btn-primary" do%>
+					      	 	    <span class="glyphicon glyphicon-ok-sign"></span>
+    										Hora disponible
+  									<% end %>							              	
+				              </td>
+				        	 <%end%>
+				    		</tr>
 				    <%@a+=20.minutes%>
 				    <%end%>
 				    
 				<% end %>
 				</table>
+				</div>
+			</div>
 		<%end%>
 
 

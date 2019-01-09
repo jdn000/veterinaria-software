@@ -1,11 +1,17 @@
-     <nav class="navbar navbar-dark bg-prim  ">
-      <div class="container-fluid">       
+<header>
+    <nav class="navbar navbar-expand-xl navbar-dark bg-success">
         <div class="navbar-header">
-         <a class="navbar-brand " href="#">Veterinaria doolittle</a>
+              <div class="logo">
+                <%= image_tag("image.png", :size => "70x50") %><%= image_tag("tx.png", :size => "150x50") %>
+              </div>
         </div>
-           <ul class="nav navbar-nav navbar-right ">
-           <div>
-             <% if current_user %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbarMd">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="collapsingNavbarMd">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <% if current_user %>
                 <%= link_to 'Actualizar mis datos', edit_user_registration_path(current_user),:class =>"btn btn-primary btn-sm" %>
 
                 <%= link_to 'Cerrar Sesión', destroy_user_session_path,:class =>"btn btn-primary btn-sm", method: :delete %>              
@@ -13,7 +19,7 @@
 
                 <%= link_to 'Proveedores  ', providers_path,:class =>"btn btn-primary btn-sm" %>
                 <%= link_to 'Productos ', products_path,:class =>"btn btn-primary btn-sm" %>
-                <%= link_to 'Consultas medicas ', attentions_path,:class =>"btn btn-primary btn-sm" %>
+
                 <%= link_to 'Usuarios', users_path, :class =>"btn btn-primary btn-sm" %>
                 <%= link_to 'Horarios', horarios_path, :class =>"btn btn-primary btn-sm" %>
                 <%=link_to ' Horas agendadas',hour_reservations_path,:class=>"btn btn-primary btn-sm" %>
@@ -23,16 +29,19 @@
                 <%=link_to 'Reserva de horas',hour_reservations_path(current_user.id),:class=>"btn btn-primary btn-sm" %>
             
              <%elsif current_user.role=='veterinario' || current_user.role== 'peluquero'%>
- 
+                 <%= link_to 'Consultas medicas ', attentions_path,:class =>"btn btn-primary btn-sm" %>
                 <%=link_to 'Mi horario',hour_reservations_path,:class=>"btn btn-primary btn-sm" %>
                                                
-           </div>
+           
            <%end%>
             <% else %>
                <%= link_to 'Iniciar sesion', new_user_session_path,:class=>"btn btn-primary btn-sm"%>           
                <%= link_to 'Registrarse', new_user_registration_path,:class=>"btn btn-primary btn-sm" %>
-              </div>
+              
             <% end %>              
-          </ul>
-      </div>
-    </nav>
+            </li>
+  
+        </ul>
+    </div>
+</nav>
+</header>

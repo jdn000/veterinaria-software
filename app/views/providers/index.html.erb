@@ -8,9 +8,9 @@
 </div>
 
 <div class="contenedor">
-  <table class="table" id="tabla-datos">
-    <thead>
-      <tr>
+  <table class="table table-sm  table-hover" id="tabla-datos">      
+
+      <tr class="bg-success">
         <th>Nombre</th>
         <th>Rut</th>
         <th>Razon social</th>
@@ -19,7 +19,7 @@
         <th >Giro</th>
         <th >Fono</th>
       </tr>
-    </thead>
+
 
     <tbody>
       <% @providers.each do |provider| %>
@@ -28,7 +28,7 @@
     </tbody>
   </table>
 </div>
-<%= link_to 'Home', root_path, :class => 'btn btn-primary' %>
+<%= link_to 'Inicio', root_path, class: 'btn btn-primary' %>
 
 <script type="text/javascript">
   $(document).ready(function() {
