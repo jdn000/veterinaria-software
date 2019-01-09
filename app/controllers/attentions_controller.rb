@@ -9,6 +9,7 @@ before_action :authenticate_user!
     @attentions = Attention.all
     @hour_reservations=HourReservation.all
     @fichas = Array.new
+    @x=1
     @hour_reservations.each do |hour|
       if hour.especialidad == current_user.role
         @fichas.push(hour)

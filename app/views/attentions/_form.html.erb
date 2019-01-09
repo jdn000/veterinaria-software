@@ -8,11 +8,9 @@
 
       <%= f.hidden_field(:pet_id, :value=> HourReservation.all.where(:id => @id_hora).first.pet_id) %>  
 
-      <%= f.hidden_field(:user_id, :value=> HourReservation.all.where(:id => @id_hora).first.user_id) %>
-
       <%= f.hidden_field(:tipo_atencion, :value=> HourReservation.all.where(:id => @id_hora).first.especialidad) %>
 
-      <%= f.hidden_field(:admin_id, :value=> current_user.id) %>
+      <%= f.hidden_field(:user_id, :value=> current_user.id) %>
 
       <%= f.submit "Generar ficha",class: "btn btn-primary" %>
   <% end %>

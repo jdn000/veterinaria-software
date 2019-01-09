@@ -1,15 +1,15 @@
 
 <p>
   <strong>Tipo atencion :</strong>
-  <%= @attention.tipo_atencion %>
+  <%= @attention.tipo_atencion.capitalize %>
 </p>
 <p>
   <strong>Nombre mascota :</strong>
-  <%= @attention.hour_reservation.pet.nombre %>
+  <%= @attention.hour_reservation.pet.nombre.capitalize %>
 </p>
 <p>
   <strong>Nombre Dueño :</strong>
-  <%= @attention.hour_reservation.pet.user.nombre %>
+  <%= @attention.hour_reservation.pet.user.nombre.capitalize %>
 </p>
 <p>
   <strong>Fecha :</strong>

@@ -1,48 +1,46 @@
 
 <%if current_user.role== 'veterinario'%>
-<h4>Bienvenido  <%= current_user.role %>  </h4>
+  <h4>Bienvenido  <%= current_user.role %>  </h4>
+  <h1>Reservas asociadas su cargo </h1>
+    <%if !(@fichas.empty?)%>
+      <table>
+        <tr>
 
-<h1>Reservas asociadas su cargo </h1>
-  <%if !(@fichas.empty?)%>
-    <table>
-      <tr>
-        <th>Tipo de atencion  </th>
-        <th>Mascota </th>
-        <th>Dueño </th>
-        <th>Fecha de atencion </th>
-        <th>Hora reserva </th>
-        <th></th>
-      </tr>    
-    <% @fichas.each do |ficha|%>
-      <tr>  
-          <td><%= ficha.especialidad.capitalize %></td>
-          <td><%= ficha.pet.nombre %></td>
-          <td><%= ficha.pet.user.nombre %></td>
-          <td><%= ficha.fecha_reserva.strftime "%d/%m"%></td> 
-          <td><%= ficha.hora_reserva.strftime "%H:%M"%></td>
-          <td><%= ficha.id %></td>
+          <th>Mascota </th>
+          <th>Dueño </th>
+          <th>Fecha de atencion </th>
+          <th>Hora reserva </th>
+          <th></th>
+        </tr>    
+        <% @fichas.each do |ficha|%>
+          <tr>  
+              <td><%= ficha.pet.nombre.capitalize %></td>
+              <td><%= ficha.pet.user.nombre.capitalize %></td>
+              <td><%= ficha.fecha_reserva.strftime "%d/%m"%></td> 
+              <td><%= ficha.hora_reserva.strftime "%H:%M"%></td>
+      
+          </tr>
+            <% @attentions.each do |attention|%>
 
-                        <td><%= link_to "Agregar ficha", nueva_ficha_path(ficha.id)%></td> 
-
-          <% @attentions.each do |attention|%>
-                    
-
-                    <tr>
-                      <% if attention.hour_id == ficha.id %>
-                          <th>Ficha Existente  </th>
-                          <td><%= attention.tipo_atencion %></td>
-                          <td><%= attention.descripcion %></td>
-                          
-                          <td><%= link_to 'Show', attention %></td>
-                          <td><%= link_to 'Edit', edit_attention_path(attention) %></td>
-                          <td><%= link_to 'Destroy', attention, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                    </tr>
+                <tr>
+                    <% if attention.hour_id == ficha.id %>
+                      <th>Ficha Existente  </th>
+                                
+                      <td><%= link_to 'Ver', attention %></td>
+                      <td><%= link_to 'Editar', edit_attention_path(attention) %></td>
+                      <td><%= link_to 'Eliminar', attention, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <% @x=2 %>
                     <% end %>
-    </tr>
-          <% end %>
-    <% end %>
-    </table>
-    <%else%>
+                </tr>
+             <% end %>
+             <% if @x==1 %>
+                       <td><%= link_to "Agregar ficha", nueva_ficha_path(ficha.id)%></td> 
+              <% end %>
+          <% @x=1 %>
+      <% end %>
+        </table>
+      <%end%>
+<%end%>
 
 
     <%end%>
