@@ -2,7 +2,7 @@ class HourReservationsController < ApplicationController
 def index
 	@hour_reservations=HourReservation.all
 	
-	if current_user.role == 'veterinario' || current_user.role == 'Peluquero'||current_user.role == 'Veterinario' || current_user.role == 'Peluquero'
+	if current_user.role == 'veterinario' || current_user.role == 'peluquero'||current_user.role == 'Veterinario' || current_user.role == 'Peluquero'
 		@horas_especialista=Array.new
 	 	current_user.hour_reservations.each do |n|
 	 		if n.fecha_reserva == Date.today
