@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show,:destroy,:edit,:update]
   before_action :authenticate_user!
-
+  before_action :require_activated
   def new
     @product = Product.new
   end
@@ -11,9 +11,7 @@ class ProductsController < ApplicationController
 
   def show
   end
-
-
-
+  
   def create
     @product = Product.create(product_params)
 
@@ -52,5 +50,12 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
+    def require_activated
+      if !current_user.activado? 
+        flash[:error]="Usuario no existe [401]"
+        redirect_to root_path
+
+      end     
+    end   
 end
 

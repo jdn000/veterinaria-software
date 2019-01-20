@@ -31,9 +31,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
  #  end
 
   # DELETE /resource
-#   def destroy
-   # super
-  #end
+   def destroy
+    @user=current_user
+    @user.toggle(:activado)
+    @user.save
+    if @user.activado == false
+      flash[:success]='Adios'
+      sign_out_and_redirect(current_user)
+    end
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

@@ -1,6 +1,7 @@
 <h2>Editar información de: <%= @user.nombre %> <%=@user.ap_pat%></h2>
 
 <%= form_for(@user) do |f| %>
+<%=render 'error_messages'%>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true,class: "form-control" %>
@@ -38,7 +39,10 @@
     <%= f.label :rol %><br />
      <%= f.select(:role,["cliente","veterinario","peluquero","trabajador"], {}, { :class => 'select' }) %>
   </div>
-
+  <div class="field">
+    <%= f.label :estado %><br />
+     <%= f.select(:activado,[["activo",true],["inactivo",false]],{}, { :class => 'select' }) %>
+  </div>
   <div class="actions">
     <%= f.submit "Actualizar" %>
   </div>

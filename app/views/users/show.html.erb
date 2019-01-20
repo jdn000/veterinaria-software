@@ -2,8 +2,8 @@
 <table class="table table-sm  table-hover">
    <tr class="bg-success">
     <th>Nombre </th>
-    <th>Apellido paterno </th>
-    <th>Apellido materno </th>
+    <th>Apellidos  </th>
+
     <th>Fono</th>
     <th>Dirección</th>
     <th>Comuna</th>
@@ -12,8 +12,7 @@
   </tr>
   <tr>
       <td><%= @user.nombre %></td>
-      <td><%= @user.ap_pat %></td>
-      <td><%= @user.ap_mat %></td>
+      <td><%= @user.ap_pat %> <%= @user.ap_mat %></td>
       <td><%= @user.celular%></td>
       <td><%= @user.direccion%></td>
       <td><%= @user.comuna%></td>

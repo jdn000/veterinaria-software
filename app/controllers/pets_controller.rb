@@ -1,5 +1,5 @@
 class PetsController < ApplicationController
-
+ before_action :require_activated
     def index
       @user=current_user
 	  @pets = Pet.where("user_id = ?",current_user.id)
@@ -62,4 +62,11 @@ class PetsController < ApplicationController
 	    params.require(:pet).permit(:nombre, :tipo_mascota, :sexo, :raza, :edad)
 	  end
 
+	  def require_activated
+	  	if !current_user.activado? 
+	  		flash[:error]="Usuario no existe [401]"
+	  		redirect_to root_path
+
+	  	end  		
+	  end	
 end

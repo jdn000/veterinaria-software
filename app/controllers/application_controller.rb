@@ -2,8 +2,14 @@ class ApplicationController < ActionController::Base
 protect_from_forgery with: :exception 
 before_action :authenticate_user!, except: [:inicio, :about, :contact]
 before_action :permitted_parameters, if: :devise_controller?
-
+before_action :require_activated,except: [:inicio, :about, :contact]
 def inicio
+  @empleados=User.where("role = ? OR role = ? OR role = ? AND activado = ?",'trabajador','peluquero','veterinario', true)
+  @clientes=User.where(role: 'cliente')
+  #@horas=HourReservation.where(" fecha_reserva between ? AND ? ", Date.today.prev_month, Date.today+1.month)
+
+ end
+
 end
 def about
 end
@@ -28,4 +34,12 @@ end
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+    def require_activated
+      if current_user != nil
+       if !current_user.activado?        
+         sign_out_and_redirect(current_user)
+         flash[:error]="Usuario no existe [401]"
+       end     
+      end
+    end   
 end

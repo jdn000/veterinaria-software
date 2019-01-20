@@ -1,8 +1,9 @@
 class HourReservationsController < ApplicationController
+	 before_action :require_activated
 def index
 	@hour_reservations=HourReservation.all
 	
-	if current_user.role == 'veterinario' || current_user.role == 'peluquero'||current_user.role == 'Veterinario' || current_user.role == 'Peluquero'
+	if current_user.role == 'veterinario' || current_user.role == 'peluquero' 
 		@horas_especialista=Array.new
 	 	current_user.hour_reservations.each do |n|
 	 		if n.fecha_reserva == Date.today
@@ -12,14 +13,14 @@ def index
 		end
 		@horas_especialista.sort_by{ |t| t.fecha_reserva.day } 	
 
-	elsif current_user.role == 'cliente'||current_user.role == 'Cliente'
+	elsif current_user.role == 'cliente'
 		@horas_cliente=Array.new
 	    @hour_reservations.each do |hour|
 			if hour.pet.user.id == current_user.id
 				@horas_cliente.push(hour)
 			end
 		end	
-	elsif current_user.role == 'trabajador' ||current_user.role == 'admin'||current_user.role == 'Trabajador' ||current_user.role == 'Admin'
+	elsif current_user.role == 'trabajador' ||current_user.role == 'admin'
 		@horas_dia=Array.new
 	    @hour_reservations.each do |dia|
 	    	if Date.today.sunday? || Holidays.on(Date.today,:cl).empty? == false
@@ -39,7 +40,7 @@ def new
 	@fecha=params[:fecha].to_date
 	@hora=Time.at(params[:hora].to_i)
 	@especialidad=params[:especialidad].downcase
-	@especialistas=User.where(role: @especialidad)
+	@especialistas=User.where(role: @especialidad, activado: true)
 	@esp_disp=Array.new
 	@especialistas.each do |especialista|
 		if @hora.between?( especialista.horario.entrada , especialista.horario.salida )
@@ -131,5 +132,12 @@ def hour_params
 	params.require(:hour_reservation).permit(:fecha_reserva,:hora_reserva,:user_id,:pet_id,:especialidad)
 end
 
+def require_activated
+	if !current_user.activado? 
+	  flash[:error]="Usuario no existe [401]"
+	  redirect_to root_path
+
+	end  		
+end	
 
 end

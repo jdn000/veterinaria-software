@@ -1,38 +1,30 @@
-<div clas="container-fluid"><h2>Editar información de: <%= current_user.nombre %> <%=current_user.ap_pat%></h2>
+<div clas="container-fluid"><h2>Editar información de: <%= current_user.nombre.capitalize %> <%=current_user.ap_pat.capitalize%></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
+<%=render 'users/error_messages'%>
+<h1>____</h1>
+  <div class="field">    
+    <%= f.label :Cambiar %> <h5>(Déjela en blanco si no la quiere cambiar)</h5><br />
+    <%= f.password_field :password,class: "form-control" %>
+</div>    
+    <% if @minimum_password_length %>
+      <em><%= @minimum_password_length %> caracteres mínimos</em>
+    <% end %>
+  <div class="field">
+    <%= f.label :Confirma_tu_nueva_contraseña %><br />
+    <%= f.password_field :password_confirmation,class: "form-control" %>
+</div>    
+<h1>____</h1>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true,class: "form-control" %>
   </div>
-
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :Contraseña %> <i>(Déjela en blanco si no lo quiere cambiar)</i><br />
-    <%= f.password_field :password,class: "form-control" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> caracteres mínimos</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :Confirma_tu_contraseña %><br />
-    <%= f.password_field :password_confirmation,class: "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :Contraseña_actual %> <i>(Se necesita para confirmar los cambios)</i><br />
-    <%= f.password_field :current_password,class: "form-control"%>
-
   <div class="field">
     <%= f.label :Rut %><br />
-    <%= f.text_field :rut,class: "form-control" %>
+    <%= f.text_field :rut,class: "form-control", :disabled => true %>
   </div>
   <div class="field">
     <%= f.label :nombre %><br />
@@ -56,16 +48,23 @@
   </div>
           <div class="field">
             <%= f.label :Comuna %><br />
-             <%= f.select(:comuna,[" ","Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón", "Vitacura", "Puente Alto", "Pirque", "San José de Maipo", "Colina", "Lampa", "Tiltil", "San Bernardo", "Buin", "Calera de Tango", "Paine", "Melipilla", "Alhué", "Curacaví", "María Pinto", "San Pedro", "Talagante", "El Monte", "Isla de Maipo", "Padre Hurtado", "Peñaflor"], {}, { :class => 'select' }) %>
+             <%= f.select(:comuna,["Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón", "Vitacura", "Puente Alto", "Pirque", "San José de Maipo", "Colina", "Lampa", "Tiltil", "San Bernardo", "Buin", "Calera de Tango", "Paine", "Melipilla", "Alhué", "Curacaví", "María Pinto", "San Pedro", "Talagante", "El Monte", "Isla de Maipo", "Padre Hurtado", "Peñaflor"], {}, { :class => 'select' }) %>
           </div>
-  <div class="actions">
-    <%= f.submit "Actualizar", class: "btn btn-primary" %>
-  </div>
+   <div class="field">
+    <%= f.label :Contraseña_actual %> <i>(Se necesita para confirmar los cambios)</i><br />
+    <%= f.password_field :current_password,class: "form-control"%>    
+  <p>       
+    <div class="actions">
+      <%= f.submit "Actualizar", class: "btn btn-primary" %>
+    </div>
+ </p>    
 <% end %>
 
-<h3>Cancelar mi cuenta</h3>
+<h3>Cancelar la cuenta</h3>
 
-<p>Disconforme? <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Estás seguro?" }, method: :delete %></p>
+<p><%= button_to "Eliminar cuenta", registration_path(resource_name), method: :delete, 
+                         data: { confirm: 'Está seguro?' },class: "btn btn-primary "%></p>
 
 <%= link_to "Volver",:back %>
 </div>
+

@@ -1,7 +1,7 @@
 class ProvidersController < ApplicationController
 	before_action :set_provider, only: [:show,:destroy,:edit,:update]
 	before_action :authenticate_user!
-
+ 	before_action :require_activated
 	def new
 		@provider = Provider.new
 	end
@@ -46,7 +46,13 @@ class ProvidersController < ApplicationController
 	def set_provider
 		@provider = Provider.find(params[:id])
 	end
+	  def require_activated
+	  	if !current_user.activado? 
+	  		flash[:error]="Usuario no existe [401]"
+	  		redirect_to root_path
 
+	  	end  		
+	  end	
 end
 
 

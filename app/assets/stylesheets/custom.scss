@@ -97,7 +97,7 @@ p {
 
 .modal-content {
     background-color: #0795b2;
-        top: 100px;
+        top: 200px;
 }
 
 section {
@@ -411,3 +411,17 @@ background-color: #348558; //color navbar
   position: relative;
 }
 
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}

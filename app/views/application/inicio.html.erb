@@ -1,52 +1,39 @@
-<div class="container-fluid">
-	<div class="w3-container w3-light-blue">
-		<div style="background:transparent !important" class="jumbotron">
-		<h1 style="color:teal;">Bienvenido a <%= image_tag("tx.png", class: "img-responsive img-thumbnail img-circle") %></h1>
+<% if current_user.nil?%>
+ <%=render 'servicios'%>
+<%else%>  
+  <%if current_user.role == 'cliente'%>
+     
+     <%=render 'servicios'%>
+  
+  <%end%>
+  <%if current_user.role == 'admin' %>
+    <div class="col-sm-12" style="background-color:lightgreen;">         
+      <h1>Bienvenido administrador</h1>
+      <h5>Existen <%=@empleados.count%> empleados inscritos en el sistema <%= link_to 'Ver empleados', users_path, :class =>"btn btn-primary btn-sm" %></h5>
+      <%@sin_horario=0%>
+    <% @empleados.each do |e|%>
+      <%if e.horario.nil? && e.activado?%>
+      <%=@sin_horario%>
+      <% @sin_horario+=1%>
+      <%end%>
+  <%end%>
+  <%if @sin_horario>0%>
+       
+       <h5>Existen <%=@sin_horario%> empleados sin horario asignado <%= link_to 'Ir a asignar horarios', horarios_path, :class =>"btn btn-primary btn-sm" %></h5>
+   
+    <%end%>
+  <h5>Existen <%=@clientes.count%> clientes inscritos en el sistema <%= link_to 'Ver clientes', clientes_path, :class =>"btn btn-primary btn-sm" %></h5>
 
-		</div>
-
-  <div class="row">
-    <div class="col-sm-8" style="background-color:lightblue;">
-    		<h1  style="color:slateblue;">En nuestra veterinaria nos precupamos por su mascota</h1>
-    </div>
-    <div class="col-sm-4" style="background-color:lightblue;">
-      <%= image_tag("ct3.jpg", class: "img-responsive img-thumbnail img-circle") %>   </div>
-
+  <p>-Editar estado trabajadores</p>
+  <p>-Ver lista-estado clientes</p>
+  <p>-Ver fichas clinicas</p>
   </div>
-  <div class="row">
-    <div class="col-sm-4" style="background-color:lightgreen;">
-    	    		<%= image_tag("dg1.jpg", class: "img-responsive img-thumbnail img-circle") %>
-    </div>
-    <div class="col-sm-8" style="background-color:lightgreen;">
-    	<h1  style="color:slateblue;">Ofrecemos una amplia gama de servicios</h1>
-    </div>
-  </div>  
-  <div class="row">
-    <div class="col-sm-8" style="background-color:lightblue;">
-    	<h2  style="color:slateblue;">Esterlizaciones</h2>
-    	<h2  style="color:slateblue;">Cirugías</h2>
-    	<h2  style="color:slateblue;">Vacunación</h2>
-    	<h2  style="color:slateblue;">Desparasitación</h2>
-    	<h2  style="color:slateblue;">Ecografías</h2>
-    </div>  	
-    <div class="col-sm-4" style="background-color:lightblue;">
-    	    		<%= image_tag("dg2.jpg", class: "img-responsive img-thumbnail img-circle") %>
-    </div>
-
+  <div class="col-sm-12" style="background-color:gray;">Bienvenido administrador
+  <p>-Alertas de configuracion</p>
+  <p>-Asignar/editar horarios</p>
   </div>
-  <div class="row">
-    <div class="col-sm-4" style="background-color:lightgreen;">
-    	    		<%= image_tag("ct2.jpg", class: "img-responsive img-thumbnail img-circle") %>
-    </div>  	
-    <div class="col-sm-8" style="background-color:lightgreen;">
-    	<h2  style="color:slateblue;">Corte de pelo</h2>
-    	<h2  style="color:slateblue;">Limpieza dental</h2>
-    	<h2  style="color:slateblue;">Corte de uñas</h2>
-    	<h2  style="color:slateblue;">Limpieza de glandula</h2>
-    	<h2  style="color:slateblue;">Baño sanitario</h2>
-    	<h2  style="color:slateblue;">Ecografías</h2>
-    </div> 
+<%end%>
 
-  </div>
-</div>
-</div>
+
+
+<%end%>

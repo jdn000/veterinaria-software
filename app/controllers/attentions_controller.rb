@@ -1,8 +1,7 @@
 class AttentionsController < ApplicationController
-
  before_action :set_attention, only: [:show, :edit, :update, :destroy]
-before_action :authenticate_user!
-
+ before_action :authenticate_user!
+ before_action :require_activated
   # GET /attentions
   # GET /attentions.json
   def index
@@ -47,13 +46,6 @@ before_action :authenticate_user!
     end
   end
 
-  def destroy
-    @attention.destroy
-    respond_to do |format|
-      format.html { redirect_to attentions_url, notice: 'attention was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
 
   private
 
@@ -67,5 +59,11 @@ before_action :authenticate_user!
       @attention = Attention.find(params[:id])
     end
 
+    def require_activated
+      if !current_user.activado? 
+        flash[:error]="Usuario no existe [401]"
+        redirect_to root_path
 
+      end     
+    end 
 end

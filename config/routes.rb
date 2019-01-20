@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post '/users/new', to: 'users#create'
   get '/select_time', to: 'hour_reservations#datesearch'
   root 'application#inicio'
-
+  get '/clientes', to: 'users#indexc', as: 'clientes'
   resources :horarios
   resources :providers   
   resources :products

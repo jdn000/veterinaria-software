@@ -1,11 +1,10 @@
 
-<h1>Lista de Empleados</h1>
+<h1>Lista de Clientes</h1>
 
 <table class="table table-sm  table-hover">
    <tr class="bg-success">
     <th>Nombre </th>
     <th>Apellidos </th>
-    <th> Rol</th>
     <th> Email</th>
     <th>Estado</th>
     <th></th>
@@ -17,7 +16,6 @@
 
       <td><%= user.nombre %></td>
       <td><%= user.ap_pat %> <%= user.ap_mat %></td>
-      <td><%= user.role %></td>
       <td><%=user.email%></td>
       <%if user.activado?%>
       <td>activo</td>

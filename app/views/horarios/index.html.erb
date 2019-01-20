@@ -1,4 +1,4 @@
-<%if @especialistas.empty? == false%>
+<%if @especialistas.empty? == false %>
 <table class="table table-sm  table-hover">
    <tr class="bg-success">
 			    <th>Nombre  </th>
@@ -8,7 +8,7 @@
 			    
 			  </tr>	
 			<% @especialistas.each do |especialista|%>
-				<%if especialista.role== 'Veterinario'||especialista.role== 'Peluquero' ||especialista.role== 'Trabajador'||especialista.role== 'veterinario'||especialista.role== 'peluquero' ||especialista.role== 'trabajador'%>
+				<%if especialista.role== 'veterinario'||especialista.role== 'peluquero' ||especialista.role== 'trabajador'%>
 
 				<tr>
 					<td><strong><%=especialista.nombre.capitalize%> <%=especialista.ap_pat.capitalize%> <%=especialista.ap_mat.capitalize%></strong></td>
