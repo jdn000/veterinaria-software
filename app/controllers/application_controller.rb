@@ -7,9 +7,6 @@ def inicio
   @empleados=User.where("role = ? OR role = ? OR role = ? AND activado = ?",'trabajador','peluquero','veterinario', true)
   @clientes=User.where(role: 'cliente')
   #@horas=HourReservation.where(" fecha_reserva between ? AND ? ", Date.today.prev_month, Date.today+1.month)
-
- end
-
 end
 def about
 end
