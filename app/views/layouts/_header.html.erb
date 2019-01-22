@@ -23,13 +23,14 @@
                 <%= link_to 'Horarios', horarios_path, :class =>"btn btn-primary btn-sm" %>
                 <%=link_to ' Horas agendadas',hour_reservations_path,:class=>"btn btn-primary btn-sm" %>
                 <%=link_to ' Fichas clinicas',attentions_path,:class=>"btn btn-primary btn-sm" %>
-            <% if  current_user.role=='trabajador' %>
+            <% elsif    current_user.role=='trabajador' %>
 
                 <%= link_to 'Clientes', clientes_path, :class =>"btn btn-primary btn-sm" %>
                 <%= link_to 'Empleados', users_path, :class =>"btn btn-primary btn-sm" %>
                 <%= link_to 'Horarios', horarios_path, :class =>"btn btn-primary btn-sm" %>
                 <%=link_to ' Horas agendadas',hour_reservations_path,:class=>"btn btn-primary btn-sm" %>            
             <%elsif current_user.role=='cliente'%>
+
                 <%=link_to 'Mis Mascotas',user_pets_path(current_user.id),:class=>"btn btn-primary btn-sm" %>
                 <%=link_to 'Reserva de horas',hour_reservations_path(current_user.id),:class=>"btn btn-primary btn-sm" %>
             
@@ -37,12 +38,12 @@
                  <%= link_to 'Consultas medicas ', attentions_path,:class =>"btn btn-primary btn-sm" %>
                 <%=link_to 'Mi horario',hour_reservations_path,:class=>"btn btn-primary btn-sm" %>
                  <%=link_to ' Fichas clinicas',attentions_path,:class=>"btn btn-primary btn-sm" %>                                         
-           <%end%>
+           
              <%elsif current_user.role=='peluquero'%> 
                  <%= link_to 'Consultas medicas ', attentions_path,:class =>"btn btn-primary btn-sm" %>
                 <%=link_to 'Mi horario',hour_reservations_path,:class=>"btn btn-primary btn-sm" %>
                                                           
-           <%end%>           
+                 
             <% else %>
                <%= link_to 'Iniciar sesion', new_user_session_path,:class=>"btn btn-primary btn-sm"%>           
                <%= link_to 'Registrarse', new_user_registration_path,:class=>"btn btn-primary btn-sm" %>
