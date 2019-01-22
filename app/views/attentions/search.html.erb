@@ -12,7 +12,7 @@
   </tr> 
 <%@attentions.each do |a|%>
   <tr>  
-    <td><%=a.cliente %></td>
+    <td><%=a.nombre_mascota %></td>
     <td><%=a.created_at.strftime("%d-%m-%Y")%></td>
     <td><%= a.hora_atencion.strftime "%H:%M" %></td>
     <td><%=a.user.rut%></td>
