@@ -24,7 +24,7 @@
 <%else%>
 <h1>El rut ingresado no existe</h1>
 <%end%>
-<%if current_user.role%>
+<%if current_user.role =='veterinario'%>
 <%=link_to 'Nueva ficha', new_attention_path, class: "btn btn-primary btn-sm"%>
 <%end%>
 
