@@ -14,7 +14,11 @@
 //= require activestorage
 //= require jquery
 //= require jquery-ui
-//= require jquery_ujs
+
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+//= require dependent-fields
+ $(document).ready(function() {
+     DependentFields.bind()
+ });

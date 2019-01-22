@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_18_030825) do
+ActiveRecord::Schema.define(version: 2019_01_22_052154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,14 @@ ActiveRecord::Schema.define(version: 2019_01_18_030825) do
     t.string "tipo_atencion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "descripcion"
-    t.integer "hour_id"
-    t.integer "pet_id"
+    t.text "descripcion"
     t.integer "user_id"
+    t.time "hora_atencion"
+    t.integer "mascota"
+    t.string "cliente"
+    t.string "nombre"
+    t.string "nombre_mascota"
+    t.integer "celular"
   end
 
   create_table "horarios", force: :cascade do |t|
@@ -99,8 +103,6 @@ ActiveRecord::Schema.define(version: 2019_01_18_030825) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "attentions", "hour_reservations", column: "hour_id"
-  add_foreign_key "attentions", "pets"
   add_foreign_key "attentions", "users"
   add_foreign_key "horarios", "users"
   add_foreign_key "hour_reservations", "pets"

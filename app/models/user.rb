@@ -24,6 +24,9 @@ class User < ApplicationRecord
   validates :direccion, length: { in: 10..254 , :message => " La direccion debe estar los 10 a 254 caracteres"}, presence: { message: "no puede estar en blanco" }
   VALID_NUMBER_REGEX = /^(\+?56)?(\s?)(0?9)(\s?)[98765]\d{7}$/
   validates :celular, format: { with: VALID_NUMBER_REGEX, message: " invalido, debe tener 9 dígitos", multiline: true} 
+  def name_with_initial
+    "#{nombre.capitalize} #{ap_pat.capitalize} #{ap_mat.capitalize}"
+  end
 
  private
  def minimizando_entradas

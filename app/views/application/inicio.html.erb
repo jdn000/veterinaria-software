@@ -24,13 +24,12 @@
     <%end%>
   <h5>Existen <%=@clientes.count%> clientes inscritos en el sistema <%= link_to 'Ver clientes', clientes_path, :class =>"btn btn-primary btn-sm" %></h5>
 
-  <p>-Editar estado trabajadores</p>
-  <p>-Ver lista-estado clientes</p>
-  <p>-Ver fichas clinicas</p>
   </div>
-  <div class="col-sm-12" style="background-color:gray;">Bienvenido administrador
-  <p>-Alertas de configuracion</p>
-  <p>-Asignar/editar horarios</p>
+  <div class="col-sm-12" style="background-color:red;">
+      <%if @sin_horario>0%>
+       <h3>IMPORTANTE</h3>
+       <h5>Existen <%=@sin_horario%> empleados sin horario asignado <%= link_to 'Ir a asignar horarios', horarios_path, :class =>"btn btn-primary btn-sm" %></h5>  
+    <%end%>
   </div>
 <%end%>
 

@@ -1,62 +1,72 @@
 class AttentionsController < ApplicationController
- before_action :set_attention, only: [:show, :edit, :update, :destroy]
  before_action :authenticate_user!
  before_action :require_activated
-  # GET /attentions
-  # GET /attentions.json
+
+  
+
   def index
-    @attentions = Attention.all
+    @mis_consultas = Attention.where(user_id: current_user.id)
+    @clientes=Array.new
+    @mascotas=Array.new
+    @attention=Attention.new
     @hour_reservations=HourReservation.all
-    @fichas = Array.new
-    @x=1
-    @hour_reservations.each do |hour|
-      if hour.especialidad == current_user.role
-        @fichas.push(hour)
-      end
-    end
-
-  end
-
-  def show
+    @fichas = Array.new 
   end
 
   def new
+    @pet=Pet.all
     @attention = Attention.new
-    @id_hora = params[:id]
+    @clientes=User.where( role:'cliente')
 
   end
   def create
-    @attention = Attention.create(attention_params)
-    respond_to do |format|
-      format.html {redirect_to attentions_path}
-      format.js
+     @attention=Attention.new(attention_params)
+    if @attention.save
+       flash[:success]= 'Ficha creada con exito'
+       redirect_to attentions_path
+    else
+       flash[:error]= 'Error en el ingreso'
+       # redirect_to new_attention_path
+       @mascotas= Pet.where(user_id: @attention.cliente.to_i)
+       @a=String.new
+       @a=@attention.cliente
+       @cliente=User.find(@a.to_i)
+       render 'existente', id: @a.to_i
     end
   end
-
-  def edit
+  def existente
+    @cliente=User.find_by(id: params[:id])
+    @mascotas= Pet.where(user_id: @cliente.id)
+    @attention=Attention.new
   end
 
-  def update
-    respond_to do |format|
-      if @attention.update(attention_params)
-        format.html { redirect_to attentions_path,  notice: 'Se actualizaron los datos'}
-      else
-        render 'edit'
-      end
-    end
+  def nuevo
+    @attention=Attention.new
+   end
+
+  def buscar
+    @attentions=Attention.all
   end
 
-
-  private
+  def mostrar
+    @attention=Attention.find(params[:id])
+    @cliente=User.find_by(rut: @attention.nombre_mascota)
+    @mascota=Pet.find( @attention.mascota )
+    @especialista=@attention.user
+  end
+def mis_fichas
+  @attentions=Attention.where(user_id: current_user.id)
+end
+def search
+    @attentions = Attention.where(cliente: params[:search]).order("created_at DESC")
+    if @attentions.nil?
+         @attentions = Attention.where(nombre_mascota: params[:search]).order("created_at DESC")
+       end
+end
+private
 
     def attention_params
-    params.require(:attention).permit(:tipo_atencion, :descripcion, :hour_id, :pet_id, :user_id, :admin_id)
-    end
-    def hour_params
-      params.require(:hour_reservation).permit(:fecha_reserva,:hora_reserva,:user_id,:pet_id,:especialidad) 
-    end
-    def set_attention
-      @attention = Attention.find(params[:id])
+    params.require(:attention).permit(:tipo_atencion,:hora_atencion, :descripcion,:cliente, :mascota, :user_id,:nombre,:nombre_mascota,:celular)
     end
 
     def require_activated
@@ -66,4 +76,5 @@ class AttentionsController < ApplicationController
 
       end     
     end 
+
 end

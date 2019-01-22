@@ -1,0 +1,25 @@
+<h1>Detalle de la ficha</h1>
+<div class="w3-container w3-light-blue">
+<%if @cliente.nil?%>
+	<h4>Tipo de cliente: no registrado</h4>   
+   	<h4>Rut cliente: <%=@attention.cliente%></h4>
+    <h4>Nombre cliente: <%=@attention.nombre%></h4>
+    <h4>Nombre mascota: <%=@attention.nombre_mascota%></h4>   
+    <h4>Fecha <%=@attention.created_at.strftime("%d-%m-%Y")%></h4>
+    <h4> Hora <%= @attention.hora_atencion.strftime "%H:%M" %></h4>
+    <h4> Rut especialista:<%=@especialista.rut%></h4>
+    <h4> Nombre especialista:<%= @especialista.nombre%> <%=@especialista.ap_pat%><%=@especialista.ap_mat%></h4>
+    <h4> Detalle de la atención:<%=@attention.descripcion%></h4>
+<%else%>
+	<h4>Tipo de cliente: registrado</h4>   
+   	<h4>Rut cliente: <%=@cliente.rut%></h4>
+    <h4>Nombre cliente: <%=@cliente.nombre%> <%=@cliente.ap_pat%> <%=@cliente.ap_mat%></h4>
+    <h4>Nombre mascota: <%= @mascota.nombre%></h4>   
+    <h4>Fecha <%=@attention.created_at.strftime("%d-%m-%Y")%></h4>
+    <h4> Hora <%= @attention.hora_atencion.strftime "%H:%M" %></h4>
+    <h4> Rut especialista:<%=@especialista.rut%></h4>
+    <h4> Nombre especialista:<%= @especialista.nombre.capitalize%> <%=@especialista.ap_pat.capitalize%> <%=@especialista.ap_mat.capitalize%></h4>
+    <h4> Detalle de la atención:<%=@attention.descripcion%></h4>
+
+<%end%>    
+ </div>   

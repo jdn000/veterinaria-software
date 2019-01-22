@@ -1,0 +1,32 @@
+
+
+<%= form_for @attention  do |f| %>
+<% if @attention.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      El formulario contiene <%= pluralize(@attention.errors.count, "errores") %>.
+    </div>
+    <ul>
+    <% @attention.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<p><%= f.select :mascota, @mascotas.map { |c| [c.nombre, c.id] }, {:prompt => "Seleccione la mascota"},class: "form-control" %></p>
+<div class="field">
+<p><%= f.label :Hora_de_la_atención %><p>
+<%= f.time_select :hora_atencion , start_hour: 10, end_hour: 20, minute_step: 30%>
+</div>
+<div class="field">
+<p><%= f.label :Descripción_de_la_atención %><p>
+
+<%= f.text_area :descripcion, :rows => 10, :cols => 30 %> 
+</div>
+<%= f.hidden_field(:cliente, :value=> @cliente.id) %>
+<%= f.hidden_field(:nombre_mascota, :value=> @cliente.rut) %>
+<%= f.hidden_field(:user_id, :value=> current_user.id) %>
+<%= f.hidden_field(:tipo_atencion, :value=> current_user.role) %>
+<%= f.submit "Crear ficha",class: "btn btn-primary",data: { confirm: 'Una vez creada la ficha, no es posible eliminarla. ¿Continuar?' } %>
+<% end %>
+

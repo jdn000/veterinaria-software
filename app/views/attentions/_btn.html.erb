@@ -1,0 +1,15 @@
+
+<button class="btn btn-primary"  data-toggle="collapse" data-target="#new_appointment"> Usuario existente </button>
+  <div id="new_appointment" class="collapse">
+  	<p>
+	<%=form_tag(existente_attentions_path,method: :get) do  %>
+
+ <%= collection_select @cliente, :id, @clientes, :id, :name_with_initial %>
+
+	<%= submit_tag ("Seleccionar"),class: "btn btn-primary"%>
+	<%end%>
+</p>
+</div>
+
+
+

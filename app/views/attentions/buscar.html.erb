@@ -1,0 +1,27 @@
+<%if !@attentions.empty?%>
+<h1>Lista de fichas</h1>
+<div class="w3-container w3-light-blue">
+<table class="table table-sm  table-hover">
+   <tr class="bg-success">
+    <th>Rut cliente </th>
+    <th>Fecha </th>
+    <th> Hora</th>
+    <th> Rut especialista</th>
+    <th>Detalle</th>
+  </tr> 
+<%@attentions.each do |a|%>
+  <tr>  
+    <td><%=a.nombre_mascota %></td>
+    <td><%=a.created_at.strftime("%d-%m-%Y")%></td>
+    <td><%= a.hora_atencion.strftime "%H:%M" %></td>
+    <td><%=a.user.rut%></td>
+    <td><%=link_to 'Ver', mostrar_attentions_path(:id => a.id), class: "btn btn-primary btn-sm"%></td>
+  </tr>
+
+<% end %>
+</table>
+</div>
+<%else%>
+<h1>No existen fichas</h1>
+<%end%>
+<%=link_to 'Nueva ficha', new_attention_path, class: "btn btn-primary btn-sm"%>

@@ -4,6 +4,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '<=2.5.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'ajax-datatables-rails'
+gem 'jquery-datatables'
+gem 'dependent-fields-rails'
 gem 'holidays'
 gem 'rails', '~> 5.2.1'
 gem 'jquery-ui-rails'
