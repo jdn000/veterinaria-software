@@ -1,9 +1,6 @@
 class AttentionsController < ApplicationController
- before_action :authenticate_user!
  before_action :require_activated
-
-  
-
+ before_action :require_certain_role
   def index
     @mis_consultas = Attention.where(user_id: current_user.id)
     @clientes=Array.new
@@ -76,5 +73,10 @@ private
 
       end     
     end 
-
+    def require_certain_role
+      if current_user.role=='cliente' ||current_user.role=='peluquero' 
+        flash[:error]="No esta autorizado para acceder a esta pagina"
+        redirect_to root_path
+      end     
+    end
 end

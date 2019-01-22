@@ -7,13 +7,14 @@
     <h1>Reservas asociadas su cargo </h1>
       <%if !@mis_consultas.empty? %>
       <%=link_to 'Ver mis fichas', mis_attentions_path, class: "btn btn-primary btn-sm"%>
+      <%=link_to 'Nueva ficha', new_attention_path, class: "btn btn-primary btn-sm"%>
       <%else%>
         <h1>No existen consultas medicas asociadas a usted</h1>    
       <%end%>
      <%end%> 
 <%end%>
 
-<%=link_to 'Nueva ficha', new_attention_path, class: "btn btn-primary btn-sm"%>
+
 <%=link_to 'Ver fichas', tabla_attentions_path, class: "btn btn-primary btn-sm"%>
 <h5>Búsqueda por rut</h5> 
 <%= form_tag(search_path, :method => "get", id: "search-form") do %>
