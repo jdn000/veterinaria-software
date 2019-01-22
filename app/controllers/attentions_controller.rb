@@ -55,7 +55,7 @@ def mis_fichas
   @attentions=Attention.where(user_id: current_user.id)
 end
 def search
-    @attentions = Attention.where(cliente: params[:search]).order("created_at DESC")
+    @attentions = Attention.where(nombre_mascota: params[:search]).order("created_at DESC")
     if @attentions.nil?
          @attentions = Attention.where(nombre_mascota: params[:search]).order("created_at DESC")
        end
