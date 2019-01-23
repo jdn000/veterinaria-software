@@ -24,4 +24,8 @@
 <%else%>
 <h1>No existen fichas</h1>
 <%end%>
+<%if current_user.role =='veterinario'%>
 <%=link_to 'Nueva ficha', new_attention_path, class: "btn btn-primary btn-sm"%>
+<%end%>
+
+<%=link_to 'Volver', :back, class: "btn btn-primary btn-sm"%>
