@@ -9,7 +9,8 @@
       <%=link_to 'Ver mis fichas', mis_attentions_path, class: "btn btn-primary btn-sm"%>
       <%=link_to 'Nueva ficha', new_attention_path, class: "btn btn-primary btn-sm"%>
       <%else%>
-        <h1>No existen consultas medicas asociadas a usted</h1>    
+        <h1>No existen consultas medicas asociadas a usted</h1>
+        <%=link_to 'Nueva ficha', new_attention_path, class: "btn btn-primary btn-sm"%>    
       <%end%>
      <%end%> 
 <%end%>
