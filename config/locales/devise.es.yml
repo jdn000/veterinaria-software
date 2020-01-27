@@ -1,6 +1,7 @@
 es:
  devise:
     failure:
+      not_found_in_database : "Error de usuario/password"
       already_authenticated: 'Ya iniciaste sesión.'
       unauthenticated: 'Tienes que registrarte o iniciar sesión antes de continuar.'
       unconfirmed: 'Tienes que confirmar tu cuenta antes de continuar.'

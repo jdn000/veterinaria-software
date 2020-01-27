@@ -1,27 +1,28 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '<=2.5.5'
+ruby '~>2.6.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'ajax-datatables-rails'
 gem 'jquery-datatables'
 gem 'dependent-fields-rails'
 gem 'holidays'
-gem 'rails', '~> 5.2.1'
+gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 gem 'jquery-ui-rails'
 gem 'run_cl'
 gem "simple_calendar", "~> 2.0"
 gem 'exception_handler', '~> 0.8.0.0'
 # Use postgresql as the database for Active Record
-gem 'pg', '>= 0.18', '< 2.0'
+gem 'pg'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 gem 'devise' # para crear login
@@ -73,6 +74,6 @@ gem 'jquery-rails'
 gem 'autoprefixer-rails', '~> 7.1','>=7.1.6'
 gem 'sprockets', '~> 3.7.2'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
-gem 'cancancan', '~> 2.0'
+
 
 

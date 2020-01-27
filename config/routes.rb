@@ -34,7 +34,6 @@ Rails.application.routes.draw do
    resources :pets
   end
  get 'pet/index'
-root :to => "pet#index"
 
  
 
