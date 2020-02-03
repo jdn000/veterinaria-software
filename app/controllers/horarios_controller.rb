@@ -2,7 +2,7 @@ class HorariosController < ApplicationController
  before_action :require_certain_role
   before_action :require_activated
   def index
-    @especialistas=User.where.not(role:'cliente', role: 'admin', activado: false , role: nil )
+    @especialistas=User.where.not(role: %w(cliente admin), activado: false , role: nil )
     @horarios = Horario.all
   end
 def new
